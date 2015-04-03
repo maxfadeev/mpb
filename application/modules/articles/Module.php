@@ -1,16 +1,14 @@
 <?php
 
 
-namespace Application\Modules\Admin;
+namespace Application\Modules\Articles;
 
 
-use Phalcon\Loader;
-use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
-use Phalcon\Mvc\View;
 
 class Module implements ModuleDefinitionInterface
 {
+
     /**
      * @var \Phalcon\DiInterface
      */
@@ -24,15 +22,15 @@ class Module implements ModuleDefinitionInterface
         $loader = new Loader();
 
         $loader->registerNamespaces([
-            'Application\Modules\Admin\Controllers' => '../application/modules/admin/controllers/',
-            'Application\Modules\Admin\Models' => '../application/modules/admin/models/',
+            'Application\Modules\Articles\Controllers' => '../application/modules/articles/controllers/',
+            'Application\Modules\Articles\Models' => '../application/modules/articles/models/',
         ]);
 
         $loader->register();
     }
 
     /**
-     * Registers services related to the module
+     * Registers an autoloader related to the module
      *
      * @param \Phalcon\DiInterface $di
      */
@@ -50,7 +48,7 @@ class Module implements ModuleDefinitionInterface
     {
         $this->di->set('dispatcher', function() {
             $dispatcher = new Dispatcher();
-            $dispatcher->setDefaultNamespace('Application\Modules\Admin\Controllers');
+            $dispatcher->setDefaultNamespace('Application\Modules\Articles\Controllers');
             return $dispatcher;
         });
     }
@@ -62,7 +60,7 @@ class Module implements ModuleDefinitionInterface
     {
         $this->di->set('view', function() {
             $view = new View();
-            $view->setViewsDir('../application/modules/admin/views/');
+            $view->setViewsDir('../application/modules/articles/views/');
             $view->registerEngines(['.volt' => 'Phalcon\Mvc\View\Engine\Volt']);
             return $view;
         });
