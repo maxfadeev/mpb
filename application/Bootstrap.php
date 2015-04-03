@@ -32,8 +32,8 @@ class Bootstrap
 
             $router->notFound([
                 'module' => 'admin',
-                'controller' => 'index',
-                'action' => 'index'
+                'controller' => 'error',
+                'action' => 'notFound'
             ]);
 
             $routes = $this->getIniConfiguration('routes');
