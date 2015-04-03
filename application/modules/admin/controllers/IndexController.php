@@ -10,6 +10,6 @@ class IndexController extends Controller
 {
     public function indexAction()
     {
-        $this->view->setVar('title', 'Test Title');
+        $this->view->setVar('title', 'Admin Test Title');
     }
 }
