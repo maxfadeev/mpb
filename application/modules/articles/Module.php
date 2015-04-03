@@ -4,7 +4,10 @@
 namespace Application\Modules\Articles;
 
 
+use Phalcon\Loader;
+use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
+use Phalcon\Mvc\View;
 
 class Module implements ModuleDefinitionInterface
 {
