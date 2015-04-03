@@ -27,10 +27,14 @@ class Bootstrap
     public function setRoutes()
     {
         $this->di->set('router', function() {
-            $router = new Router();
+            // create a router without default rotes
+            $router = new Router(false);
 
-            // TODO: change the default module
-            $router->setDefaultModule('admin');
+            $router->notFound([
+                'module' => 'admin',
+                'controller' => 'index',
+                'action' => 'index'
+            ]);
 
             $routes = $this->getIniConfiguration('routes');
             foreach ($routes as $route) {
