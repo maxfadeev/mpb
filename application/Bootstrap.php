@@ -6,6 +6,7 @@ namespace Application;
 
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Mvc\Application;
+use Phalcon\Mvc\Router;
 
 class Bootstrap
 {
@@ -17,6 +18,31 @@ class Bootstrap
     public function __construct()
     {
         $this->di = new DiApplication();
+        $this->setRoutes();
+    }
+
+    /**
+     * Sets a Router service
+     */
+    public function setRoutes()
+    {
+        $this->di->set('router', function() {
+            $router = new Router();
+
+            // TODO: change the default module
+            $router->setDefaultModule('admin');
+
+            $routes = $this->getIniConfiguration('routes');
+            foreach ($routes as $route) {
+                $router->add($route->pattern, [
+                    'module' => $route->module,
+                    'controller' => $route->controller,
+                    'action' => $route->action
+                ]);
+            }
+
+            return $router;
+        });
     }
 
     /**
