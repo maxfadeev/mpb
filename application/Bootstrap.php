@@ -30,6 +30,7 @@ class Bootstrap
             // create a router without default rotes
             $router = new Router(false);
 
+            // set a 404 page
             $router->notFound([
                 'module' => 'admin',
                 'controller' => 'error',
