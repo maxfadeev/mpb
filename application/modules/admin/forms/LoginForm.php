@@ -14,7 +14,7 @@ class LoginForm extends Form
     public function initialize()
     {
         $login = new Text('login', ['placeholder' => 'Login']);
-        $login->addValidator(new PresenceOf(['message' => 'The login os required']));
+        $login->addValidator(new PresenceOf(['message' => 'The login is required']));
 
         $this->add($login);
 
