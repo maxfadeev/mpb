@@ -2,8 +2,8 @@
 <html>
     <head>
         {% block head %}
+            <title>{% block title %}{% endblock %} - Blog</title>
         {% endblock %}
-        <title>{% block title %}{% endblock %} - Blog</title>
     </head>
     <body>
         <div id="content">
