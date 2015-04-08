@@ -15,7 +15,7 @@ class UsersController extends Controller
         $form = new AddForm();
 
         if ($this->request->isPost() == true) {
-            if ($form->isValid($this->request->getPost()) == true) {
+            if ($form->isValid($this->request->getPost()) == true && $this->security->checkToken() == true) {
                 $users = new Users();
 
                 $users->assign([
@@ -26,7 +26,10 @@ class UsersController extends Controller
                 ]);
 
                 if ($users->save()) {
-
+                    $this->dispatcher->forward([
+                        'controller' => 'index',
+                        'action' => 'index'
+                    ]);
                 }
 
                 $this->flash->error($users->getMessages());
