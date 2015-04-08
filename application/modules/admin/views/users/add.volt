@@ -15,6 +15,9 @@
         {{ form.render('password') }}
         {{ form.render('confirmPassword') }}
 
+        {# CSRF security token #}
+        <input type="hidden" name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}" />
+
         {{ form.render('submit') }}
     </form>
 {% endblock %}
