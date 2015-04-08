@@ -18,7 +18,28 @@ class Bootstrap
     public function __construct()
     {
         $this->di = new DiApplication();
+        $this->setDb();
         $this->setRoutes();
+    }
+
+    public function setDb()
+    {
+        $config = $this->getIniConfiguration('application');
+
+        $this->di->set('db', [
+            'className' => 'Phalcon\Db\Adapter\Pdo\Mysql',
+            'arguments' => [
+                [
+                    'type' => 'parameter',
+                    'value' => [
+                        'host' => $config->db->host,
+                        'username' => $config->db->username,
+                        'password' => $config->db->password,
+                        'dbname' => $config->db->name
+                    ]
+                ]
+            ]
+        ]);
     }
 
     /**
