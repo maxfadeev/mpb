@@ -20,6 +20,9 @@
         <?php echo $form->render('password'); ?>
         <?php echo $form->render('confirmPassword'); ?>
 
+        
+        <input type="hidden" name="<?php echo $this->security->getTokenKey(); ?>" value="<?php echo $this->security->getToken(); ?>" />
+
         <?php echo $form->render('submit'); ?>
     </form>
 
