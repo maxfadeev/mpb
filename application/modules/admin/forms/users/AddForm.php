@@ -19,6 +19,29 @@ class AddForm extends Form
 {
     public function initialize()
     {
+        // login
+        $this->addLoginElement();
+        // email
+        $this->addEmailElement();
+        // password & password confirm
+        $this->addPasswordElement();
+
+        $csrf = new Hidden('csrf');
+        $csrf->addValidator(new Identical([
+            'value' => $this->security->getSessionToken(),
+            'message' => 'CSRF validation failed'
+        ]));
+
+        $this->add($csrf);
+
+        $this->add(new Submit('submit', ['class' => 'btn']));
+    }
+
+    /**
+     * Adds a login element of the form
+     */
+    protected function addLoginElement()
+    {
         $login = new Text('login');
         $login->addValidators([
             new PresenceOf(['message' => 'The login is required']),
@@ -31,7 +54,13 @@ class AddForm extends Form
         ]);
 
         $this->add($login);
+    }
 
+    /**
+     * Adds an email element of the form
+     */
+    protected function addEmailElement()
+    {
         $email = new Text('email');
         $email->addValidators([
             new PresenceOf(['message' => 'The email is required']),
@@ -39,7 +68,13 @@ class AddForm extends Form
         ]);
 
         $this->add($email);
+    }
 
+    /**
+     * Adds a password element of the form
+     */
+    protected function addPasswordElement()
+    {
         $password = new Password('password');
         $password->addValidators([
             new PresenceOf(['message' => 'The password is required']),
@@ -61,16 +96,6 @@ class AddForm extends Form
         ]));
 
         $this->add($confirmPassword);
-
-        $csrf = new Hidden('csrf');
-        $csrf->addValidator(new Identical([
-            'value' => $this->security->getSessionToken(),
-            'message' => 'CSRF validation failed'
-        ]));
-
-        $this->add($csrf);
-
-        $this->add(new Submit('submit', ['class' => 'btn']));
     }
 
     /**
