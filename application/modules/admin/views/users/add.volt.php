@@ -21,7 +21,7 @@
         <?php echo $form->render('confirmPassword'); ?>
 
         
-        <input type="hidden" name="<?php echo $this->security->getTokenKey(); ?>" value="<?php echo $this->security->getToken(); ?>" />
+        <?php echo $form->render('csrf', array('name' => $this->security->getTokenKey(), 'value' => $this->security->getToken())); ?>
 
         <?php echo $form->render('submit'); ?>
     </form>

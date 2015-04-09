@@ -4,12 +4,14 @@
 namespace Application\Modules\Admin\Forms\Users;
 
 
+use Phalcon\Forms\Element\Hidden;
 use Phalcon\Forms\Element\Password;
 use Phalcon\Forms\Element\Submit;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Form;
 use Phalcon\Validation\Validator\Confirmation;
 use Phalcon\Validation\Validator\Email;
+use Phalcon\Validation\Validator\Identical;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\StringLength;
 
@@ -59,6 +61,14 @@ class AddForm extends Form
         ]));
 
         $this->add($confirmPassword);
+
+        $csrf = new Hidden('csrf');
+        $csrf->addValidator(new Identical([
+            'value' => $this->security->getSessionToken(),
+            'message' => 'CSRF validation failed'
+        ]));
+
+        $this->add($csrf);
 
         $this->add(new Submit('submit', ['class' => 'btn']));
     }
