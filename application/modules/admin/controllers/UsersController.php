@@ -15,7 +15,7 @@ class UsersController extends Controller
         $form = new AddForm();
 
         if ($this->request->isPost() == true) {
-            if ($form->isValid($this->request->getPost()) == true && $this->security->checkToken() == true) {
+            if ($form->isValid($this->request->getPost()) == true) {
                 $users = new Users();
 
                 $users->assign([
