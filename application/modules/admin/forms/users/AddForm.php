@@ -72,4 +72,18 @@ class AddForm extends Form
 
         $this->add(new Submit('submit', ['class' => 'btn']));
     }
+
+    /**
+     * Prints messages for a specific element
+     *
+     * @param string $name
+     */
+    public function messages($name)
+    {
+        if ($this->hasMessagesFor($name)) {
+            foreach ($this->getMessagesFor($name) as $message) {
+                $this->flash->error($message);
+            }
+        }
+    }
 }
