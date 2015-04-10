@@ -4,6 +4,7 @@
 namespace Application\Modules\Users\Components;
 
 
+use Application\Modules\Users\Models\FailedLogins;
 use Application\Modules\Users\Models\Users;
 use Phalcon\Mvc\User\Component;
 
@@ -37,6 +38,33 @@ class Auth extends Component
      */
     public function registerUserThrottling($uid)
     {
+        $failedLogin = new FailedLogins();
+        $failedLogin->uid = $uid;
+        $failedLogin->ip = $this->request->getClientAddress();
+        $failedLogin->attempted = time();
 
+        $failedLogin->save();
+
+        $attempts = FailedLogins::count([
+            'ip = ?0 AND attempted >= ?1',
+            'bind' => [
+                $this->request->getClientAddress(),
+                time() - 3600 * 6
+            ]
+        ]);
+
+        switch ($attempts) {
+            case 1:
+            case 2:
+                // no delay
+                break;
+            case 3:
+            case 4:
+                sleep(2);
+                break;
+            default:
+                sleep(4);
+                break;
+        }
     }
 }
