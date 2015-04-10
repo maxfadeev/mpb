@@ -3,6 +3,7 @@
 {% block title %}Admin{% endblock %}
 
 {% block content %}
+    {{ content() }}
     <form method="post">
         {# login #}
         {{ form.messages('login') }}

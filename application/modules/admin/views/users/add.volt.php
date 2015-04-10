@@ -8,6 +8,7 @@
     <body>
         <div id="content">
             
+    <?php echo $this->getContent(); ?>
     <form method="post">
         
         <?php echo $form->messages('login'); ?>
