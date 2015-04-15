@@ -41,6 +41,7 @@ class Module implements ModuleDefinitionInterface
         $this->di = $di;
         $this->setDispatcher();
         $this->setView();
+        $this->setAuth();
     }
 
     /**
@@ -66,5 +67,13 @@ class Module implements ModuleDefinitionInterface
             $view->registerEngines(['.volt' => 'Phalcon\Mvc\View\Engine\Volt']);
             return $view;
         });
+    }
+
+    /**
+     * Sets an Auth service
+     */
+    public function setAuth()
+    {
+        $this->di->set('auth', 'Application\Modules\Users\Components\Auth');
     }
 }
