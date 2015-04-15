@@ -23,9 +23,9 @@ class UsersController extends Controller
                     'email' => $this->request->getPost('email'),
                     'password' => $this->security->hash($this->request->getPost('password')),
                     'role' => 1,
-                    'banned' => 0,
-                    'suspended' => 0,
-                    'active' => 1
+                    'banned' => false,
+                    'suspended' => false,
+                    'active' => true
                 ]);
 
                 if ($users->save()) {
