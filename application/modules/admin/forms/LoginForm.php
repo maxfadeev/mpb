@@ -4,6 +4,7 @@
 namespace Application\Modules\Admin\Forms;
 
 
+use Phalcon\Forms\Element\Password;
 use Phalcon\Forms\Element\Submit;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Form;
@@ -18,7 +19,7 @@ class LoginForm extends Form
 
         $this->add($login);
 
-        $password = new Text('password', ['placeholder' => 'Password']);
+        $password = new Password('password', ['placeholder' => 'Password']);
         $password->addValidator(new PresenceOf(['message' => 'The password is required']));
 
         $this->add($password);
