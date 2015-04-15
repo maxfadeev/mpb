@@ -5,6 +5,7 @@ namespace Application\Modules\Users\Components;
 
 
 use Application\Modules\Users\Models\FailedLogins;
+use Application\Modules\Users\Models\SuccessLogins;
 use Application\Modules\Users\Models\Users;
 use Phalcon\Mvc\User\Component;
 
@@ -18,16 +19,27 @@ class Auth extends Component
      */
     public function login(array $credentials)
     {
-        $user = Users::findFirstByEmail($credentials['email']);
+        $user = Users::findFirstByLogin($credentials['login']);
         if ($user == false) {
             $this->registerUserThrottling(0);
-            throw new AuthException('Wrong email/password combination');
+            throw new AuthException('Wrong login/password combination');
         }
 
         if ($this->security->checkHash($credentials['password'], $user->password) == false) {
             $this->registerUserThrottling($user->id);
-            throw new AuthException('Wrong email/password combination');
+            throw new AuthException('Wrong login/password combination');
         }
+
+        // check whether the user is banned/inactive/suspended
+        $this->checkUserFlags($user);
+
+        // register the successful login
+        $this->registerSuccessLogin($user);
+
+        $this->session->set('auth-identity', [
+            'id' => $user->id,
+            'login' => $user->login
+        ]);
     }
 
     /**
@@ -65,6 +77,45 @@ class Auth extends Component
             default:
                 sleep(4);
                 break;
+        }
+    }
+
+    /**
+     * Checks whether the user is banned/inactive/suspended
+     *
+     * @param \Application\Modules\Users\Models\Users $user
+     * @throws AuthException
+     */
+    public function checkUserFlags(Users $user)
+    {
+        if ($user->active != true) {
+            throw new AuthException('The user is inactive');
+        }
+
+        if ($user->banned == true) {
+            throw new AuthException('The user is banned');
+        }
+
+        if ($user->suspended == true) {
+            throw new AuthException('The user is suspended');
+        }
+    }
+
+    /**
+     * Registers a success login
+     *
+     * @param \Application\Modules\Users\Models\Users $user
+     * @throws AuthException
+     */
+    public function registerSuccessLogin(Users $user)
+    {
+        $successLogin = new SuccessLogins();
+        $successLogin->uid = $user->id;
+        $successLogin->ip = $this->request->getClientAddress();
+        $successLogin->userAgent = $this->request->getUserAgent();
+        if ($successLogin->save() == false) {
+            $message = $successLogin->getMessages();
+            throw new AuthException($message[0]);
         }
     }
 }
