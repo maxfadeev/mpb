@@ -27,4 +27,11 @@ class FailedLogins extends Model
      * @var integer
      */
     public $attempted;
+
+    public function initialize()
+    {
+        $this->belongsTo('uid', 'Application\Modules\Users\Models\Users', 'id', [
+            'alias' => 'user'
+        ]);
+    }
 }
