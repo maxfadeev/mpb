@@ -21,5 +21,5 @@ class SuccessLogins extends Model
     /**
      * @var string
      */
-    public $userAgent;
+    public $user_agent;
 }

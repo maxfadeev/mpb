@@ -112,7 +112,7 @@ class Auth extends Component
         $successLogin = new SuccessLogins();
         $successLogin->uid = $user->id;
         $successLogin->ip = $this->request->getClientAddress();
-        $successLogin->userAgent = $this->request->getUserAgent();
+        $successLogin->user_agent = $this->request->getUserAgent();
         if ($successLogin->save() == false) {
             $message = $successLogin->getMessages();
             throw new AuthException($message[0]);

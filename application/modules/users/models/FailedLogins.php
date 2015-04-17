@@ -6,6 +6,13 @@ namespace Application\Modules\Users\Models;
 
 use Phalcon\Mvc\Model;
 
+/**
+ * Class FailedLogins
+ *
+ * This model registers unsuccessful logins registered and non-registered users have made
+ *
+ * @package Application\Modules\Users\Models
+ */
 class FailedLogins extends Model
 {
     /**
