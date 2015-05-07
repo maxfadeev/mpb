@@ -118,4 +118,14 @@ class Auth extends Component
             throw new AuthException($message[0]);
         }
     }
+
+    /**
+     * Gets a current identity
+     *
+     * @return array
+     */
+    public function getIdentity()
+    {
+        return $this->session->get('auth-identity');
+    }
 }
