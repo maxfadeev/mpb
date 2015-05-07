@@ -4,6 +4,8 @@
 namespace Application\Modules\Admin;
 
 
+use Application\DispatcherListener;
+use Phalcon\Events\Manager;
 use Phalcon\Loader;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
@@ -42,6 +44,7 @@ class Module implements ModuleDefinitionInterface
         $this->setDispatcher();
         $this->setView();
         $this->setAuth();
+        $this->setAcl();
     }
 
     /**
@@ -52,6 +55,12 @@ class Module implements ModuleDefinitionInterface
         $this->di->set('dispatcher', function() {
             $dispatcher = new Dispatcher();
             $dispatcher->setDefaultNamespace('Application\Modules\Admin\Controllers');
+
+            $eventsManager = new Manager();
+            $eventsManager->attach("dispatch", new DispatcherListener());
+
+            $dispatcher->setEventsManager($eventsManager);
+
             return $dispatcher;
         });
     }
@@ -75,5 +84,13 @@ class Module implements ModuleDefinitionInterface
     public function setAuth()
     {
         $this->di->set('auth', 'Application\Modules\Users\Components\Auth');
+    }
+
+    /**
+     * Sets an Acl service
+     */
+    public function setAcl()
+    {
+        $this->di->set('acl', 'Application\Modules\Admin\Components\Acl');
     }
 }
