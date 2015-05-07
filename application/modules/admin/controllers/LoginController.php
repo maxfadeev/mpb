@@ -25,7 +25,10 @@ class LoginController extends Controller
                         'password' => $this->request->getPost('password')
                     ]);
 
-                    $this->flash->success('Welcome!');
+                    $this->dispatcher->forward([
+                        'controller' => 'index',
+                        'action' => 'index'
+                    ]);
                 }
             } catch (AuthException $e) {
                 $this->flash->error($e->getMessage());
