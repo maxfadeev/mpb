@@ -7,6 +7,7 @@ namespace Application;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Mvc\Application;
 use Phalcon\Mvc\Router;
+use Phalcon\Session\Adapter\Files as SessionAdapter;
 
 class Bootstrap
 {
@@ -20,8 +21,12 @@ class Bootstrap
         $this->di = new DiApplication();
         $this->setDb();
         $this->setRoutes();
+        $this->setSession();
     }
 
+    /**
+     * Sets a Db service
+     */
     public function setDb()
     {
         $config = $this->getIniConfiguration('application');
@@ -40,6 +45,18 @@ class Bootstrap
                 ]
             ]
         ]);
+    }
+
+    /**
+     * Sets a Session service
+     */
+    public function setSession()
+    {
+        $this->di->set('session', function() {
+            $session = new SessionAdapter();
+            $session->start();
+            return $session;
+        });
     }
 
     /**
