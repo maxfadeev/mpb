@@ -27,11 +27,6 @@ class AddForm extends Form
         $this->addPasswordElement();
 
         $csrf = new Hidden('csrf');
-        $csrf->addValidator(new Identical([
-            'value' => $this->security->getSessionToken(),
-            'message' => 'CSRF validation failed'
-        ]));
-
         $this->add($csrf);
 
         $this->add(new Submit('submit', ['class' => 'btn']));

@@ -15,7 +15,8 @@ class UsersController extends Controller
         $form = new AddForm();
 
         if ($this->request->isPost() == true) {
-            if ($form->isValid($this->request->getPost()) == true) {
+            // check if form data are valid and CSRF token is right
+            if ($form->isValid($this->request->getPost()) && $this->security->checkToken()) {
                 $users = new Users();
 
                 $users->assign([
