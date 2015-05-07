@@ -32,6 +32,18 @@ class DispatcherListener extends Component
 
                 return false;
             }
+
+            $actionName = $dispatcher->getActionName();
+            if ($this->acl->isAllowed($identity['login'], $controllerName, $actionName) == false) {
+                $this->flash->notice('You don\'t have access to this module');
+
+                $dispatcher->forward([
+                    'controller' => 'login',
+                    'action' => 'index'
+                ]);
+
+                return false;
+            }
         }
     }
 }

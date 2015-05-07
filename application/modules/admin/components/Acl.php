@@ -59,7 +59,7 @@ class Acl extends Component
      */
     public function isAllowed($role, $resource, $action)
     {
-        return $this->acl->isAllowed($role, $resource, $action);
+        return $this->getAcl()->isAllowed($role, $resource, $action);
     }
 
     /**
