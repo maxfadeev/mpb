@@ -20,6 +20,8 @@ class Roles extends Model
 
     public function initialize()
     {
-        $this->hasMany('id', 'Application\Modules\Users\Models\Permissions', 'role_id');
+        $this->hasMany('id', 'Application\Modules\Users\Models\Permissions', 'role_id', [
+            'alias' => 'permissions'
+        ]);
     }
 }
