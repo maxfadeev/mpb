@@ -4,6 +4,7 @@
 namespace Application\Modules\Articles;
 
 
+use Phalcon\DiInterface;
 use Phalcon\Loader;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
@@ -19,8 +20,10 @@ class Module implements ModuleDefinitionInterface
 
     /**
      * Registers an autoloader related to the module
+     *
+     * @param \Phalcon\DiInterface $di
      */
-    public function registerAutoloaders()
+    public function registerAutoloaders(DiInterface $di = null)
     {
         $loader = new Loader();
 
@@ -37,7 +40,7 @@ class Module implements ModuleDefinitionInterface
      *
      * @param \Phalcon\DiInterface $di
      */
-    public function registerServices($di)
+    public function registerServices(DiInterface $di)
     {
         $this->di = $di;
         $this->setDispatcher();
