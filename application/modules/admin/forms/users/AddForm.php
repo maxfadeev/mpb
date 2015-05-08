@@ -11,7 +11,6 @@ use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Form;
 use Phalcon\Validation\Validator\Confirmation;
 use Phalcon\Validation\Validator\Email;
-use Phalcon\Validation\Validator\Identical;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\StringLength;
 
@@ -26,8 +25,7 @@ class AddForm extends Form
         // password & password confirm
         $this->addPasswordElement();
 
-        $csrf = new Hidden('csrf');
-        $this->add($csrf);
+        $this->add(new Hidden('csrf'));
 
         $this->add(new Submit('submit', ['class' => 'btn']));
     }
