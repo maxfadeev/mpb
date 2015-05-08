@@ -120,6 +120,14 @@ class Auth extends Component
     }
 
     /**
+     * Removes the user identity from the session
+     */
+    public function remove()
+    {
+        $this->session->remove('auth-identity');
+    }
+
+    /**
      * Gets a current identity
      *
      * @return array
