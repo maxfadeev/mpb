@@ -7,6 +7,7 @@ namespace Application;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Mvc\Application;
 use Phalcon\Mvc\Router;
+use Phalcon\Mvc\Url;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 
 class Bootstrap
@@ -22,6 +23,7 @@ class Bootstrap
         $this->setDb();
         $this->setRoutes();
         $this->setSession();
+        $this->setUrl();
     }
 
     /**
@@ -123,4 +125,15 @@ class Bootstrap
         return new Ini("../application/configs/{$name}.ini");
     }
 
+    /**
+     * Sets an Url service
+     */
+    public function setUrl()
+    {
+        $this->di->set('url', function() {
+            $url = new Url();
+            $url->setBaseUri('/');
+            return $url;
+        });
+    }
 }
