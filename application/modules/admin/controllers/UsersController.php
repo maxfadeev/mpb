@@ -10,6 +10,13 @@ use Phalcon\Mvc\Controller;
 
 class UsersController extends Controller
 {
+    public function indexAction()
+    {
+        $users = Users::find();
+
+        $this->view->setVar('users', $users);
+    }
+
     public function addAction()
     {
         $form = new AddForm();

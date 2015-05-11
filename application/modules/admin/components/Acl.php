@@ -31,7 +31,8 @@ class Acl extends Component
      */
     private $privateResources = [
         'users' => [
-            'add'
+            'add',
+            'index'
         ],
         'index' => [
             'index'
