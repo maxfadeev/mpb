@@ -5,6 +5,7 @@ namespace Application\Modules\Users;
 
 
 use Phalcon\DiInterface;
+use Phalcon\Loader;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 
 class Module implements ModuleDefinitionInterface
