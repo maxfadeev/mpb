@@ -4,9 +4,11 @@
 
 {% block content %}
     {{ content() }}
-    <form method="post">
-        {{ form.render('login') }}
-        {{ form.render('password') }}
-        {{ form.render('submit') }}
-    </form>
+    <div id="login-block">
+        <form method="post">
+            {{ form.render('login') }}
+            {{ form.render('password') }}
+            {{ form.render('submit') }}
+        </form>
+    </div>
 {% endblock %}

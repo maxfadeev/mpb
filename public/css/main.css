@@ -1,0 +1,14 @@
+#login-block {
+    width: 210px;
+    padding: 10px;
+    height: 140px;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+
+#login, #password {
+    width: 206px;
+    margin-bottom: 3px;
+}

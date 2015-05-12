@@ -2,6 +2,7 @@
 <html>
     <head>
         {% block head %}
+            <link href="/public/css/main.css" rel="stylesheet" media="all" />
         {% endblock %}
         <title>{% block title %}{% endblock %} - Blog</title>
     </head>

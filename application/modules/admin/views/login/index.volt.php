@@ -2,18 +2,24 @@
 <html>
     <head>
         
+            <link href="/public/css/main.css" rel="stylesheet" media="all" />
         
         <title>Admin - Blog</title>
     </head>
     <body>
+        <div id="header">
+            <a href="<?php echo $this->url->get('a/logout'); ?>">Logout</a>
+        </div>
         <div id="content">
             
     <?php echo $this->getContent(); ?>
-    <form method="post">
-        <?php echo $form->render('login'); ?>
-        <?php echo $form->render('password'); ?>
-        <?php echo $form->render('submit'); ?>
-    </form>
+    <div id="login-block">
+        <form method="post">
+            <?php echo $form->render('login'); ?>
+            <?php echo $form->render('password'); ?>
+            <?php echo $form->render('submit'); ?>
+        </form>
+    </div>
 
         </div>
 
