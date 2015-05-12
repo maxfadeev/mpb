@@ -6,7 +6,7 @@ namespace Application;
 
 use Phalcon\DI\FactoryDefault;
 
-class DiApplication extends FactoryDefault
+class Di extends FactoryDefault
 {
 
 }

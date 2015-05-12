@@ -19,7 +19,7 @@ class Bootstrap
 
     public function __construct()
     {
-        $this->di = new DiApplication();
+        $this->di = new Di();
         $this->setDb();
         $this->setRoutes();
         $this->setSession();
