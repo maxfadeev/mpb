@@ -2,7 +2,8 @@
 <html>
     <head>
         
-            <link href="/public/css/main.css" rel="stylesheet" media="all" />
+            <link href="http://cdn.everything.io/kickstart/3.x/css/kickstart.min.css" rel="stylesheet" />
+            <link href="/public/css/main.css" rel="stylesheet" />
         
         <title>Admin - Blog</title>
     </head>
@@ -26,5 +27,6 @@
         <div id="footer">
             
         </div>
+        <script type='text/javascript' src='http://cdn.everything.io/kickstart/3.x/js/kickstart.min.js'></script>
     </body>
 </html>

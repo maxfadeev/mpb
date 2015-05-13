@@ -1,9 +1,10 @@
 a:9:{i:0;s:45:"<!DOCTYPE html>
 <html>
     <head>
-        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:89:"
-            <link href="/public/css/main.css" rel="stylesheet" media="all" />
-        ";s:4:"file";s:65:"../application/modules/admin/views/../../../templates/layout.volt";s:4:"line";i:6;}}i:1;s:17:"
+        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:184:"
+            <link href="http://cdn.everything.io/kickstart/3.x/css/kickstart.min.css" rel="stylesheet" />
+            <link href="/public/css/main.css" rel="stylesheet" />
+        ";s:4:"file";s:65:"../application/modules/admin/views/../../../templates/layout.volt";s:4:"line";i:7;}}i:1;s:17:"
         <title>";s:5:"title";N;i:2;s:202:" - Blog</title>
     </head>
     <body>
@@ -15,7 +16,8 @@ a:9:{i:0;s:45:"<!DOCTYPE html>
         </div>
 
         <div id="footer">
-            ";s:6:"footer";N;i:4;s:38:"
+            ";s:6:"footer";N;i:4;s:153:"
         </div>
+        <script type='text/javascript' src='http://cdn.everything.io/kickstart/3.x/js/kickstart.min.js'></script>
     </body>
 </html>";}
