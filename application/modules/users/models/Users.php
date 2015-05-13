@@ -47,4 +47,13 @@ class Users extends Model
      * @var boolean
      */
     public $active;
+
+    /**
+     * @param integer $id
+     * @return \Phalcon\Mvc\Model
+     */
+    public static function findFirstById($id)
+    {
+        return parent::findFirstById($id);
+    }
 } 

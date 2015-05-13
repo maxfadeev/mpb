@@ -10,6 +10,7 @@ use Phalcon\Mvc\User\Component;
 
 /**
  * @property \Application\Modules\Users\Components\Auth auth
+ * @property \Application\Acl acl
  */
 class DispatcherListener extends Component
 {

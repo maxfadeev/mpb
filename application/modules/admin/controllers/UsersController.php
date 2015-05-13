@@ -10,6 +10,9 @@ use Phalcon\Mvc\Controller;
 
 class UsersController extends Controller
 {
+    /**
+     * Shows users
+     */
     public function indexAction()
     {
         $users = Users::find();
@@ -17,6 +20,10 @@ class UsersController extends Controller
         $this->view->setVar('users', $users);
     }
 
+    /**
+     * Adds a new user
+     * If the user is added, forwards a request to the index action
+     */
     public function addAction()
     {
         $form = new AddForm();
@@ -48,5 +55,29 @@ class UsersController extends Controller
         }
 
         $this->view->setVar('form', $form);
+    }
+
+    /**
+     * Deletes the user by its id
+     * If the user is not found, forwards a request to the index action
+     *
+     * @param integer $id the id of the user to be deleted
+     */
+    public function deleteAction($id)
+    {
+        $user = Users::findFirstById($id);
+        if ($user == false) {
+            $this->flash->error('User was not found');
+            $this->dispatcher->forward(['action' => 'index']);
+            return;
+        }
+
+        if ($user->delete() == false) {
+            $this->flash->error($user->getMessages());
+        } else {
+            $this->flash->success('User has been deleted');
+        }
+
+        $this->dispatcher->forward(['action' => 'index']);
     }
 }

@@ -2,6 +2,7 @@
 <html>
     <head>
         
+            <link href="/public/css/main.css" rel="stylesheet" media="all" />
         
         <title>Admin - Blog</title>
     </head>
