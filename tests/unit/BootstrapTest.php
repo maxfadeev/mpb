@@ -4,7 +4,6 @@
 namespace Tests;
 
 
-use Application\Bootstrap;
 use Phalcon\Config;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\DiInterface;
@@ -20,7 +19,7 @@ class BootstrapTest extends UnitTestCase
     public function setUp(DiInterface $di = null, Config $config = null)
     {
         parent::setUp($di, $config);
-        $this->bootstrap = new Bootstrap();
+        $this->bootstrap = $this->getMockBuilder('Application\Bootstrap')->getMock();;
     }
 
     public function testClassHasDiAttribute()
