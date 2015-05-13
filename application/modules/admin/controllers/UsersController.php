@@ -62,9 +62,17 @@ class UsersController extends Controller
      * If the user is not found, forwards a request to the index action
      *
      * @param integer $id the id of the user to be deleted
+     * @param string $token csrf token value
      */
-    public function deleteAction($id)
+    public function deleteAction($id, $token)
     {
+        // verify if csrf token is right
+        if ($token !== $this->security->getSessionToken()) {
+            $this->flash->error("CSRF verification error");
+            $this->dispatcher->forward(['action' => 'index']);
+            return;
+        }
+
         $user = Users::findFirstById($id);
         if ($user == false) {
             $this->flash->error('User was not found');
@@ -75,7 +83,7 @@ class UsersController extends Controller
         if ($user->delete() == false) {
             $this->flash->error($user->getMessages());
         } else {
-            $this->flash->success('User has been deleted');
+            $this->flash->success('User has been deleted successfully');
         }
 
         $this->dispatcher->forward(['action' => 'index']);

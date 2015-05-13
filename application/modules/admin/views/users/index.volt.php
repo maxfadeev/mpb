@@ -14,7 +14,7 @@
             
     <?php echo $this->getContent(); ?>
     <?php foreach ($users as $user) { ?>
-        <p><?php echo $user->login; ?></p>
+        <p><?php echo $user->login; ?><a href="<?php echo $this->url->get('a/users/delete/id'); ?>/<?php echo $user->id; ?>/<?php echo $this->security->getToken(); ?>">delete</a></p>
     <?php } ?>
 
         </div>
