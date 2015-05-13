@@ -77,13 +77,10 @@ class Bootstrap
                 'action' => 'notFound'
             ]);
 
-            $routes = $this->getIniConfiguration('routes');
+            $routes = $this->getIniConfiguration('routes')->toArray();
             foreach ($routes as $route) {
-                $router->add($route->pattern, [
-                    'module' => $route->module,
-                    'controller' => $route->controller,
-                    'action' => $route->action
-                ]);
+                $pattern = array_shift($route);
+                $router->add($pattern, $route);
             }
 
             return $router;
