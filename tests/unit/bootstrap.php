@@ -7,6 +7,6 @@ require BASE_DIR . '/vendor/autoload.php';
 
 $loader = new \Phalcon\Loader();
 // register an application namespace
-$loader->registerNamespaces(['Application' => BASE_DIR. '/application']);
+$loader->registerNamespaces(['Application' => APP_DIR]);
 
 $loader->register();
