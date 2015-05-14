@@ -13,8 +13,16 @@ use Phalcon\Mvc\Controller;
  */
 class LoginController extends Controller
 {
+    /**
+     * Logs in the user
+     * If the user is logged in, redirects to index controller & action
+     */
     public function indexAction()
     {
+        if ($this->auth->hasIdentity()) {
+            $this->response->redirect();
+        }
+
         $form = new LoginForm();
 
         if ($this->request->isPost() == true) {

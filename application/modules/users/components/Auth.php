@@ -136,4 +136,14 @@ class Auth extends Component
     {
         return $this->session->get('auth-identity');
     }
+
+    /**
+     * Checks if there is the user's identity
+     *
+     * @return boolean
+     */
+    public function hasIdentity()
+    {
+        return $this->session->has('auth-identity');
+    }
 }
