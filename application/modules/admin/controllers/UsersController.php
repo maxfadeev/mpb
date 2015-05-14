@@ -17,7 +17,10 @@ class UsersController extends Controller
     {
         $users = Users::find();
 
-        $this->view->setVar('users', $users);
+        $this->view->setVars([
+            'users' => $users,
+            'token' => $this->security->getToken()
+        ]);
     }
 
     /**
@@ -73,6 +76,12 @@ class UsersController extends Controller
             return;
         }
 
+        // filter the parameter
+        /** @noinspection PhpVoidFunctionResultUsedInspection, actually the function returns mixed
+         * will be deleted when it is fixed in the framework */
+        $id = $this->filter->sanitize($id, 'int');
+
+        /** @noinspection PhpParamsInspection */
         $user = Users::findFirstById($id);
         if ($user == false) {
             $this->flash->error('User was not found');
