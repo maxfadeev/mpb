@@ -24,8 +24,6 @@ class DispatcherListener extends Component
             $identity = $this->auth->getIdentity();
 
             if (is_array($identity) == false) {
-                $this->flash->notice('You don\'t have access to this module');
-
                 $dispatcher->forward([
                     'controller' => 'login',
                     'action' => 'index'
