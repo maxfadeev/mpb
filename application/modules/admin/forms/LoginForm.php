@@ -24,6 +24,6 @@ class LoginForm extends Form
 
         $this->add($password);
 
-        $this->add(new Submit('submit', ['class' => 'btn']));
+        $this->add(new Submit('submit', ['value' => 'Submit', 'class' => 'btn']));
     }
 } 
