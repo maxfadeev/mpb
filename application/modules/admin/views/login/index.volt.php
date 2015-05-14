@@ -9,7 +9,9 @@
     </head>
     <body>
         <div id="header">
-            <a href="<?php echo $this->url->get('/logout'); ?>">Logout</a>
+            <?php if ($this->auth->getIdentity()) { ?>
+                <a href="<?php echo $this->url->get('/logout'); ?>">Logout</a>
+            <?php } ?>
         </div>
         <div id="content">
             
