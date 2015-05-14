@@ -101,13 +101,12 @@ class Module implements ModuleDefinitionInterface
 
     /**
      * Sets an Url service
+     * Changes a base uri
      */
     public function setUrl()
     {
-        $this->di->set('url', function() {
-            $url = new Url();
-            $url->setBaseUri('/a');
-            return $url;
-        });
+        $url = $this->di->get('url');
+        $url->setBaseUri('/a');
+        $this->di->set('url', $url);
     }
 }
