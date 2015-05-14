@@ -1,3 +1,10 @@
+@font-face{
+    font-family:museo-sans;
+    font-style:normal;
+    font-weight:300;
+    src:local('Museo Sans'),local('Museo Sans'),url(http://dev.bowdenweb.com/a/fonts/museo/museo-sans/500/museo-sans-500.ttf) format('truetype')
+}
+
 #login-block {
     width: 210px;
     padding: 10px;
