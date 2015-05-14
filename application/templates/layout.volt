@@ -9,7 +9,7 @@
     </head>
     <body>
         <div id="header">
-            <a href="{{ url("a/logout") }}">Logout</a>
+            <a href="{{ url("/logout") }}">Logout</a>
         </div>
         <div id="content">
             {% block content %}{% endblock %}

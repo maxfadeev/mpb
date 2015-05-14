@@ -18,6 +18,6 @@ class LogoutController extends Controller
     {
         $this->auth->remove();
 
-        $this->response->redirect('a/login');
+        $this->response->redirect('/login');
     }
 }

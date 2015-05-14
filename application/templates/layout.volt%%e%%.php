@@ -5,11 +5,11 @@ a:9:{i:0;s:45:"<!DOCTYPE html>
             <link href="http://cdn.everything.io/kickstart/3.x/css/kickstart.min.css" rel="stylesheet" />
             <link href="/public/css/main.css" rel="stylesheet" />
         ";s:4:"file";s:65:"../application/modules/admin/views/../../../templates/layout.volt";s:4:"line";i:7;}}i:1;s:17:"
-        <title>";s:5:"title";N;i:2;s:202:" - Blog</title>
+        <title>";s:5:"title";N;i:2;s:201:" - Blog</title>
     </head>
     <body>
         <div id="header">
-            <a href="<?php echo $this->url->get('a/logout'); ?>">Logout</a>
+            <a href="<?php echo $this->url->get('/logout'); ?>">Logout</a>
         </div>
         <div id="content">
             ";s:7:"content";N;i:3;s:59:"

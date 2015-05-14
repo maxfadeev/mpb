@@ -10,6 +10,7 @@ use Phalcon\Events\Manager;
 use Phalcon\Loader;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
+use Phalcon\Mvc\Url;
 use Phalcon\Mvc\View;
 
 class Module implements ModuleDefinitionInterface
@@ -48,6 +49,7 @@ class Module implements ModuleDefinitionInterface
         $this->setView();
         $this->setAuth();
         $this->setAcl();
+        $this->setUrl();
     }
 
     /**
@@ -95,5 +97,17 @@ class Module implements ModuleDefinitionInterface
     public function setAcl()
     {
         $this->di->set('acl', 'Application\Modules\Admin\Components\Acl');
+    }
+
+    /**
+     * Sets an Url service
+     */
+    public function setUrl()
+    {
+        $this->di->set('url', function() {
+            $url = new Url();
+            $url->setBaseUri('/a');
+            return $url;
+        });
     }
 }

@@ -86,6 +86,7 @@ class UsersController extends Controller
             $this->flash->success('User has been deleted successfully');
         }
 
+        // anyway forward to the index action
         $this->dispatcher->forward(['action' => 'index']);
     }
 }
