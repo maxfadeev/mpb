@@ -47,4 +47,13 @@ class Users extends Model
      * @var boolean
      */
     public $active;
+
+    /**
+     * Initializes the model
+     */
+    public function initialize()
+    {
+        // set values of these attributes by default
+        $this->skipAttributesOnCreate(['banned', 'suspended', 'active']);
+    }
 } 
