@@ -37,7 +37,7 @@ class DispatcherListener extends Component
                 $this->flash->notice('You don\'t have access to this module');
 
                 $dispatcher->forward([
-                    'controller' => 'login',
+                    'controller' => 'users',
                     'action' => 'index'
                 ]);
 
