@@ -17,7 +17,8 @@ class Acl extends ApplicationAcl
         'users' => [
             'add',
             'index',
-            'delete'
+            'delete',
+            'edit'
         ],
         'index' => [
             'index'

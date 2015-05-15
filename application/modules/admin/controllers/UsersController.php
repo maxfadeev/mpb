@@ -5,7 +5,9 @@ namespace Application\Modules\Admin\Controllers;
 
 
 use Application\Modules\Admin\Forms\Users\AddForm;
+use Application\Modules\Admin\Forms\Users\EditForm;
 use Application\Modules\Users\Models\Users;
+use Phalcon\Db\Column;
 use Phalcon\Mvc\Controller;
 
 class UsersController extends Controller
@@ -37,8 +39,8 @@ class UsersController extends Controller
                 $users = new Users();
 
                 $users->assign([
-                    'login' => $this->request->getPost('login'),
-                    'email' => $this->request->getPost('email'),
+                    'login' => $this->request->getPost('login', 'striptags'),
+                    'email' => $this->request->getPost('email', 'email'),
                     'password' => $this->security->hash($this->request->getPost('password')),
                     'role' => 1,
                     'banned' => false,
@@ -46,14 +48,59 @@ class UsersController extends Controller
                     'active' => true
                 ]);
 
-                if ($users->save()) {
-                    $this->dispatcher->forward([
-                        'controller' => 'index',
-                        'action' => 'index'
-                    ]);
+                if ($users->save() == true) {
+                    $this->flash->success("User has been created");
+                    $this->dispatcher->forward(['action' => 'index']);
+                    return;
                 }
 
                 $this->flash->error($users->getMessages());
+            }
+        }
+
+        $this->view->setVar('form', $form);
+    }
+
+    /**
+     * Updates the user by its id
+     *
+     * @param integer $id the id of the user to be edited
+     */
+    public function editAction($id)
+    {
+        $user = Users::findFirst([
+            'id' => '?1',
+            'bind' => [1 => $id],
+            'bindTypes' => [1 => Column::BIND_PARAM_INT]
+        ]);
+
+        if ($user == false) {
+            $this->flash->error('User was not found');
+            $this->dispatcher->forward(['action' => 'index']);
+            return;
+        }
+
+        $form = new EditForm($user);
+
+        if ($this->request->isPost()) {
+            // check if form data are valid and CSRF token is right
+            if ($form->isValid($this->request->getPost()) && $this->security->checkToken()) {
+                $user->assign([
+                    'login' => $this->request->getPost('login', 'striptags'),
+                    'email' => $this->request->getPost('email', 'email'),
+                    'role' => 1,
+                    'banned' => false,
+                    'suspended' => false,
+                    'active' => true
+                ]);
+
+                if ($user->save() == true) {
+                    $this->flash->success("User has been updated");
+                    $this->dispatcher->forward(['action' => 'index']);
+                    return;
+                }
+
+                $this->flash->error($user->getMessages());
             }
         }
 
@@ -76,13 +123,12 @@ class UsersController extends Controller
             return;
         }
 
-        // filter the parameter
-        /** @noinspection PhpVoidFunctionResultUsedInspection, actually the function returns mixed
-         * will be deleted when it is fixed in the framework */
-        $id = $this->filter->sanitize($id, 'int');
+        $user = Users::findFirst([
+            'id' => '?1',
+            'bind' => [1 => $id],
+            'bindTypes' => [1 => Column::BIND_PARAM_INT]
+        ]);
 
-        /** @noinspection PhpParamsInspection */
-        $user = Users::findFirstById($id);
         if ($user == false) {
             $this->flash->error('User was not found');
             $this->dispatcher->forward(['action' => 'index']);
