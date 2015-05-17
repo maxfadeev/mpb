@@ -6,6 +6,7 @@ namespace Application\Modules\Admin\Controllers;
 
 use Application\Modules\Admin\Forms\Users\AddForm;
 use Application\Modules\Admin\Forms\Users\EditForm;
+use Application\Modules\Users\Models\Roles;
 use Application\Modules\Users\Models\Users;
 use Phalcon\Db\Column;
 use Phalcon\Mvc\Controller;
@@ -42,7 +43,7 @@ class UsersController extends Controller
                     'login' => $this->request->getPost('login', 'striptags'),
                     'email' => $this->request->getPost('email', 'email'),
                     'password' => $this->security->hash($this->request->getPost('password')),
-                    'role' => 1
+                    'role' => $this->request->getPost('role')
                 ]);
 
                 if ($users->save() == true) {
@@ -54,6 +55,9 @@ class UsersController extends Controller
                 $this->flash->error($users->getMessages());
             }
         }
+        // if the request isn't POST, add roles drop-down
+        // hence, we don't request to Roles model if there is no need
+        $form->addRoleElement(Roles::find());
 
         $this->view->setVar('form', $form);
     }
@@ -85,7 +89,7 @@ class UsersController extends Controller
                 $user->assign([
                     'login' => $this->request->getPost('login', 'striptags'),
                     'email' => $this->request->getPost('email', 'email'),
-                    'role' => 1,
+                    'role' => $this->request->getPost('role'),
                     'banned' => false,
                     'suspended' => false,
                     'active' => true

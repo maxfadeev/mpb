@@ -4,8 +4,10 @@
 namespace Application\Modules\Admin\Forms\Users;
 
 
+use Phalcon\Mvc\Model\ResultsetInterface;
 use Phalcon\Forms\Element\Hidden;
 use Phalcon\Forms\Element\Password;
+use Phalcon\Forms\Element\Select;
 use Phalcon\Forms\Element\Submit;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Form;
@@ -16,6 +18,9 @@ use Phalcon\Validation\Validator\StringLength;
 
 class AddForm extends Form
 {
+    /**
+     * Initializes form elements
+     */
     public function initialize()
     {
         // login
@@ -27,13 +32,13 @@ class AddForm extends Form
 
         $this->add(new Hidden('csrf'));
 
-        $this->add(new Submit('submit', ['class' => 'btn']));
+        $this->add(new Submit('submit', ['value' => 'Submit', 'class' => 'btn']));
     }
 
     /**
-     * Adds a login element of the form
+     * Adds a login input
      */
-    protected function addLoginElement()
+    public function addLoginElement()
     {
         $login = new Text('login');
         $login->addValidators([
@@ -50,9 +55,9 @@ class AddForm extends Form
     }
 
     /**
-     * Adds an email element of the form
+     * Adds an email input
      */
-    protected function addEmailElement()
+    public function addEmailElement()
     {
         $email = new Text('email');
         $email->addValidators([
@@ -64,9 +69,9 @@ class AddForm extends Form
     }
 
     /**
-     * Adds a password element of the form
+     * Adds password and confirm-password inputs
      */
-    protected function addPasswordElement()
+    public function addPasswordElement()
     {
         $password = new Password('password');
         $password->addValidators([
@@ -89,6 +94,20 @@ class AddForm extends Form
         ]));
 
         $this->add($confirmPassword);
+    }
+
+    /**
+     * Adds a role drop-down select
+     *
+     * @param \Phalcon\Mvc\Model\ResultsetInterface $roles
+     */
+    public function addRoleElement(ResultsetInterface $roles)
+    {
+        $role = new Select('role');
+        $role->setOptions($roles);
+        $role->setAttributes(['using' => ['id', 'name']]);
+
+        $this->add($role);
     }
 
     /**

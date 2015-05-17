@@ -30,6 +30,9 @@
         <?php echo $form->label('password'); ?>
         <?php echo $form->render('password'); ?>
         <?php echo $form->render('confirmPassword'); ?>
+        
+        <?php echo $form->label('role'); ?>
+        <?php echo $form->render('role'); ?>
 
         
         <?php echo $form->messages('csrf'); ?>
