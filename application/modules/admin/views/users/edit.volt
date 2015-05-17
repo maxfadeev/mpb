@@ -18,6 +18,12 @@
         {{ form.label('password') }}
         {{ form.render('password') }}
         {{ form.render('confirmPassword') }}
+        {# role #}
+        {{ form.label('role') }}
+        {{ form.render('role') }}
+        {# status #}
+        {{ form.label('status') }}
+        {{ form.render('status') }}
 
         {# CSRF security token #}
         {{ form.messages('csrf') }}

@@ -70,7 +70,7 @@ class UsersController extends Controller
     public function editAction($id)
     {
         $user = Users::findFirst([
-            'id' => '?1',
+            'conditions' => 'id = ?1',
             'bind' => [1 => $id],
             'bindTypes' => [1 => Column::BIND_PARAM_INT]
         ]);
@@ -90,9 +90,9 @@ class UsersController extends Controller
                     'login' => $this->request->getPost('login', 'striptags'),
                     'email' => $this->request->getPost('email', 'email'),
                     'role' => $this->request->getPost('role'),
-                    'banned' => false,
-                    'suspended' => false,
-                    'active' => true
+                    'banned' => $form->isBanned($this->request->getPost('status')),
+                    'suspended' => $form->isSuspended($this->request->getPost('status')),
+                    'active' => $form->isActive($this->request->getPost('status'))
                 ]);
 
                 if ($user->save() == true) {
@@ -104,6 +104,9 @@ class UsersController extends Controller
                 $this->flash->error($user->getMessages());
             }
         }
+        // if the request isn't POST, add roles drop-down
+        // hence, we don't request to Roles model if there is no need
+        $form->addRoleElement(Roles::find());
 
         $this->view->setVar('form', $form);
     }
@@ -125,7 +128,7 @@ class UsersController extends Controller
         }
 
         $user = Users::findFirst([
-            'id' => '?1',
+            'conditions' => 'id = ?1',
             'bind' => [1 => $id],
             'bindTypes' => [1 => Column::BIND_PARAM_INT]
         ]);
