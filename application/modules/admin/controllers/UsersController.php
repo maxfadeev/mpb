@@ -8,7 +8,6 @@ use Application\Modules\Admin\Forms\Users\AddForm;
 use Application\Modules\Admin\Forms\Users\EditForm;
 use Application\Modules\Users\Models\Roles;
 use Application\Modules\Users\Models\Users;
-use Phalcon\Db\Column;
 use Phalcon\Mvc\Controller;
 
 class UsersController extends Controller
@@ -69,11 +68,7 @@ class UsersController extends Controller
      */
     public function editAction($id)
     {
-        $user = Users::findFirst([
-            'conditions' => 'id = ?1',
-            'bind' => [1 => $id],
-            'bindTypes' => [1 => Column::BIND_PARAM_INT]
-        ]);
+        $user = Users::findFirst(['id' => (int) $id]);
 
         if ($user == false) {
             $this->flash->error('User was not found');
@@ -128,11 +123,7 @@ class UsersController extends Controller
             return;
         }
 
-        $user = Users::findFirst([
-            'conditions' => 'id = ?1',
-            'bind' => [1 => $id],
-            'bindTypes' => [1 => Column::BIND_PARAM_INT]
-        ]);
+        $user = Users::findFirst(['id' => (int) $id]);
 
         if ($user == false) {
             $this->flash->error('User was not found');
