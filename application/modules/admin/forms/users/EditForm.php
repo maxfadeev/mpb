@@ -12,9 +12,9 @@ use Phalcon\Validation\Validator\StringLength;
 
 class EditForm extends AddForm
 {
-    const ACTIVE = 1;
-    const SUSPENDED = 2;
-    const BANNED = 3;
+    const STATUS_ACTIVE = 1;
+    const STATUS_SUSPENDED = 2;
+    const STATUS_BANNED = 3;
 
     /**
      * Initializes form elements
@@ -63,9 +63,9 @@ class EditForm extends AddForm
         $role = new Select('status');
         $role->setLabel('Status');
         $role->setOptions([
-            self::ACTIVE => 'active',
-            self::SUSPENDED => 'suspended',
-            self::BANNED => 'banned'
+            self::STATUS_ACTIVE => 'active',
+            self::STATUS_SUSPENDED => 'suspended',
+            self::STATUS_BANNED => 'banned'
         ]);
 
         $this->add($role);
@@ -79,7 +79,7 @@ class EditForm extends AddForm
      */
     public function isActive($status)
     {
-        return $status == self::ACTIVE;
+        return $status == self::STATUS_ACTIVE;
     }
 
     /**
@@ -90,7 +90,7 @@ class EditForm extends AddForm
      */
     public function isSuspended($status)
     {
-        return $status == self::SUSPENDED;
+        return $status == self::STATUS_SUSPENDED;
     }
 
     /**
@@ -101,6 +101,6 @@ class EditForm extends AddForm
      */
     public function isBanned($status)
     {
-        return $status == self::BANNED;
+        return $status == self::STATUS_BANNED;
     }
 }
