@@ -12,6 +12,8 @@
             {% endif %}
         </div>
         <div id="content">
+            {% block navigation %}
+            {% endblock %}
             {% block content %}
             {% endblock %}
         </div>

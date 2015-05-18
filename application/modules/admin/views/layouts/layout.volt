@@ -7,3 +7,9 @@
 
 {% block title %}Admin{% endblock %}
 
+{% block navigation %}
+    <a href="{{ url("/users") }}">Users</a>
+    <a href="{{ url("") }}">Dashboard</a>
+{% endblock %}
+{% block content %}
+{% endblock %}
