@@ -2,10 +2,8 @@
 <html>
     <head>
         {% block head %}
-        <link href="http://cdn.everything.io/kickstart/3.x/css/kickstart.min.css" rel="stylesheet" />
-        <link href="/public/css/main.css" rel="stylesheet" />
         {% endblock %}
-        <title>{% block title %}{% endblock %} - Blog</title>
+        <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
         <div id="header">

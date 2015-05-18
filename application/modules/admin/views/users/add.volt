@@ -1,4 +1,4 @@
-{% extends "../../../templates/layout.volt" %}
+{% extends "layouts/layout.volt" %}
 
 {% block title %}Admin{% endblock %}
 
