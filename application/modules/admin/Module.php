@@ -12,6 +12,7 @@ use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 use Phalcon\Mvc\Url;
 use Phalcon\Mvc\View;
+use Phalcon\Mvc\View\Engine\Volt;
 
 class Module implements ModuleDefinitionInterface
 {
@@ -78,7 +79,14 @@ class Module implements ModuleDefinitionInterface
         $this->di->set('view', function() {
             $view = new View();
             $view->setViewsDir('../application/modules/admin/views/');
-            $view->registerEngines(['.volt' => 'Phalcon\Mvc\View\Engine\Volt']);
+
+            $volt = new Volt($view, $this->di);
+            $volt->setOptions([
+                'compiledPath' => '../application/cache/volt/',
+                'compiledSeparator' => '_'
+            ]);
+
+            $view->registerEngines(['.volt' => $volt]);
             return $view;
         });
     }
