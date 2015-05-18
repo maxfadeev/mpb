@@ -32,6 +32,7 @@ class EditForm extends AddForm
     public function addPasswordElement()
     {
         $password = new Password('changePassword');
+        $password->setLabel('Change password');
         $password->addValidators([
             new PresenceOf(['message' => 'The password is required']),
             new StringLength([
@@ -60,6 +61,7 @@ class EditForm extends AddForm
     public function addStatusElement()
     {
         $role = new Select('status');
+        $role->setLabel('Status');
         $role->setOptions([
             self::ACTIVE => 'active',
             self::SUSPENDED => 'suspended',

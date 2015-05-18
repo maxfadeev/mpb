@@ -41,6 +41,7 @@ class AddForm extends Form
     public function addLoginElement()
     {
         $login = new Text('login');
+        $login->setLabel('Login');
         $login->addValidators([
             new PresenceOf(['message' => 'The login is required']),
             new StringLength([
@@ -60,6 +61,7 @@ class AddForm extends Form
     public function addEmailElement()
     {
         $email = new Text('email');
+        $email->setLabel('Email');
         $email->addValidators([
             new PresenceOf(['message' => 'The email is required']),
             new Email(['message' => 'The email is not valid'])
@@ -74,6 +76,7 @@ class AddForm extends Form
     public function addPasswordElement()
     {
         $password = new Password('password');
+        $password->setLabel('Password');
         $password->addValidators([
             new PresenceOf(['message' => 'The password is required']),
             new StringLength([
@@ -104,6 +107,7 @@ class AddForm extends Form
     public function addRoleElement(ResultsetInterface $roles)
     {
         $role = new Select('role');
+        $role->setLabel('Role');
         $role->setOptions($roles);
         $role->setAttributes(['using' => ['id', 'name']]);
 
