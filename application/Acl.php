@@ -10,7 +10,7 @@ use Phalcon\Acl\Resource;
 use Phalcon\Acl\Role;
 use Phalcon\Mvc\User\Component;
 
-class Acl extends Component
+abstract class Acl extends Component
 {
     /**
      * @var \Phalcon\Acl\Adapter\Memory
