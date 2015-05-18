@@ -4,7 +4,11 @@
 namespace Application\Modules\Admin\Forms\Users;
 
 
+use Phalcon\Forms\Element\Password;
 use Phalcon\Forms\Element\Select;
+use Phalcon\Validation\Validator\Confirmation;
+use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\StringLength;
 
 class EditForm extends AddForm
 {
@@ -20,6 +24,34 @@ class EditForm extends AddForm
         parent::initialize();
 
         $this->addStatusElement();
+    }
+
+    /**
+     * Adds changePassword and confirm-changePassword inputs
+     */
+    public function addPasswordElement()
+    {
+        $password = new Password('changePassword');
+        $password->addValidators([
+            new PresenceOf(['message' => 'The password is required']),
+            new StringLength([
+                'min' => 8,
+                'messageMinimum' => 'The password is too short. Minimum 8 characters'
+            ]),
+            new Confirmation([
+                'message' => 'The password doesn\'t match confirmation',
+                'with' => 'confirmChangePassword'
+            ])
+        ]);
+
+        $this->add($password);
+
+        $confirmPassword = new Password('confirmChangePassword');
+        $confirmPassword->addValidator(new PresenceOf([
+            'message' => 'The confirmation password is required'
+        ]));
+
+        $this->add($confirmPassword);
     }
 
     /**

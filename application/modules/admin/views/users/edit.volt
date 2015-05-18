@@ -14,10 +14,10 @@
         {{ form.label('email') }}
         {{ form.render('email') }}
         {# password #}
-        {{ form.messages('password') }}
-        {{ form.label('password') }}
-        {{ form.render('password') }}
-        {{ form.render('confirmPassword') }}
+        {{ form.messages('changePassword') }}
+        {{ form.label('changePassword') }}
+        {{ form.render('changePassword') }}
+        {{ form.render('confirmChangePassword') }}
         {# role #}
         {{ form.label('role') }}
         {{ form.render('role') }}

@@ -43,7 +43,7 @@ class UsersController extends Controller
                     'login' => $this->request->getPost('login', 'striptags'),
                     'email' => $this->request->getPost('email', 'email'),
                     'password' => $this->security->hash($this->request->getPost('password')),
-                    'role' => $this->request->getPost('role')
+                    'role' => $this->request->getPost('role', 'int')
                 ]);
 
                 if ($users->save() == true) {
@@ -89,10 +89,11 @@ class UsersController extends Controller
                 $user->assign([
                     'login' => $this->request->getPost('login', 'striptags'),
                     'email' => $this->request->getPost('email', 'email'),
-                    'role' => $this->request->getPost('role'),
-                    'banned' => $form->isBanned($this->request->getPost('status')),
-                    'suspended' => $form->isSuspended($this->request->getPost('status')),
-                    'active' => $form->isActive($this->request->getPost('status'))
+                    'password' => $this->security->hash($this->request->getPost('changePassword')),
+                    'role' => $this->request->getPost('role', 'int'),
+                    'banned' => $form->isBanned($this->request->getPost('status', 'int')),
+                    'suspended' => $form->isSuspended($this->request->getPost('status', 'int')),
+                    'active' => $form->isActive($this->request->getPost('status', 'int'))
                 ]);
 
                 if ($user->save() == true) {
