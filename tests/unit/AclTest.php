@@ -5,16 +5,13 @@ namespace Tests\Unit;
 
 
 use Phalcon\Config;
-use Phalcon\DiInterface;
-use Phalcon\Test\UnitTestCase;
 
-class AclTest extends UnitTestCase
+class AclTest extends \PHPUnit_Framework_TestCase
 {
     public $acl;
 
-    public function setUp(DiInterface $di = null, Config $config = null)
+    public function setUp()
     {
-        parent::setUp($di, $config);
         $this->acl = $this->getMockBuilder('Application\Acl')->getMock();
     }
 

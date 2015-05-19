@@ -5,10 +5,8 @@ namespace Tests\Unit;
 
 
 use Phalcon\Config;
-use Phalcon\DiInterface;
-use Phalcon\Test\UnitTestCase;
 
-class DispatcherListenerTest extends UnitTestCase
+class DispatcherListenerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \Application\Acl
@@ -20,10 +18,8 @@ class DispatcherListenerTest extends UnitTestCase
      */
     protected $auth;
 
-    public function setUp(DiInterface $di = null, Config $config = null)
+    public function setUp()
     {
-        parent::setUp($di, $config);
-
         $this->acl = $this->getMockBuilder('Application\Acl')
             ->setMethods(['isPrivate', 'isAllowed'])
             ->getMock();
