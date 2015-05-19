@@ -1,4 +1,4 @@
 .idea*
 application/cache
 vendor
-**/*volt*php
+application/logs

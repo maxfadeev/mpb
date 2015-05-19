@@ -5,6 +5,7 @@ namespace Application;
 
 
 use Phalcon\Config\Adapter\Ini;
+use Phalcon\Logger\Adapter\File as FileAdapter;
 use Phalcon\Mvc\Application;
 use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Url;
@@ -24,6 +25,7 @@ class Bootstrap
         $this->setRoutes();
         $this->setSession();
         $this->setUrl();
+        $this->setLogger();
     }
 
     /**
@@ -131,6 +133,19 @@ class Bootstrap
             $url = new Url();
             $url->setBaseUri('/');
             return $url;
+        });
+    }
+
+    /**
+     * Set a Logger service
+     */
+    public function setLogger()
+    {
+        $this->di->set('logger', function() {
+            $fileName = date('mdY');
+            $logger = new FileAdapter(APP_DIR . "/logs/{$fileName}.log");
+            $logger->begin();
+            return $logger;
         });
     }
 }
