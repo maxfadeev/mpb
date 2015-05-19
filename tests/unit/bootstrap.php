@@ -10,3 +10,22 @@ $loader = new \Phalcon\Loader();
 $loader->registerNamespaces(['Application' => APP_DIR]);
 
 $loader->register();
+
+$config = new \Phalcon\Config\Adapter\Ini(APP_DIR . "/configs/application.ini");
+
+$di = new \Application\Di();
+
+$di->setShared('db', [
+    'className' => 'Phalcon\Db\Adapter\Pdo\Mysql',
+    'arguments' => [
+        [
+            'type' => 'parameter',
+            'value' => [
+                'host' => '192.168.56.102',
+                'username' => $config->db->username,
+                'password' => $config->db->password,
+                'dbname' => $config->db->name
+            ]
+        ]
+    ]
+]);
