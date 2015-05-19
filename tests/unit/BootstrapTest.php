@@ -4,27 +4,31 @@
 namespace Tests\Unit;
 
 
+use Application\Bootstrap;
 use Phalcon\Config;
 use Phalcon\Config\Adapter\Ini;
-use Phalcon\DiInterface;
-use Phalcon\Test\UnitTestCase;
 
-class BootstrapTest extends UnitTestCase
+class BootstrapTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \Application\Bootstrap
      */
     protected $bootstrap;
 
-    public function setUp(DiInterface $di = null, Config $config = null)
+    public function setUp()
     {
-        parent::setUp($di, $config);
-        $this->bootstrap = $this->getMockBuilder('Application\Bootstrap')->getMock();;
+        $this->bootstrap = new Bootstrap();;
     }
 
-    public function testClassHasDiAttribute()
+    public function testServicesAreSet()
     {
         $this->assertClassHasAttribute('di', get_class($this->bootstrap));
+
+        $this->assertTrue($this->bootstrap->getDi()->has('db'));
+        $this->assertTrue($this->bootstrap->getDi()->has('session'));
+        $this->assertTrue($this->bootstrap->getDi()->has('router'));
+        $this->assertTrue($this->bootstrap->getDi()->has('url'));
+        $this->assertTrue($this->bootstrap->getDi()->has('logger'));
     }
 
     public function testSetDb()
@@ -42,5 +46,12 @@ class BootstrapTest extends UnitTestCase
     public function testSetRotes()
     {
         $this->assertFileExists(APP_DIR . '/configs/routes.ini');
+
+        $router = $this->bootstrap->getDi()->getService('router')->resolve();
+
+        $this->assertNotEmpty($router->getRoutes());
+
+        $router->handle('/a');
+        $this->assertTrue($router->wasMatched());
     }
 }

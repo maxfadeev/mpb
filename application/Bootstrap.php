@@ -148,4 +148,12 @@ class Bootstrap
             return $logger;
         });
     }
+
+    /**
+     * @return \Phalcon\DI
+     */
+    public function getDi()
+    {
+        return $this->di;
+    }
 }
