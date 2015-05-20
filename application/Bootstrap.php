@@ -19,9 +19,21 @@ class Bootstrap
      */
     protected $di;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->di = new Di();
+
+        $this->registerServices();
+    }
+
+    /**
+     * Registers all services that relate to whole application
+     */
+    public function registerServices()
+    {
         $this->setDb();
         $this->setRoutes();
         $this->setSession();
@@ -39,7 +51,7 @@ class Bootstrap
         $eventsManager = $this->di->get('eventsManager');
         $eventsManager->attach('db', new DbListener());
 
-        $this->di->set('db', function() use ($config, $eventsManager) {
+        $this->di->setShared('db', function() use ($config, $eventsManager) {
             $connection = new Mysql([
                 'host' => $config->db->host,
                 'username' => $config->db->username,
@@ -58,7 +70,7 @@ class Bootstrap
      */
     public function setSession()
     {
-        $this->di->set('session', function() {
+        $this->di->setShared('session', function() {
             $session = new SessionAdapter();
             $session->start();
             return $session;
@@ -70,7 +82,7 @@ class Bootstrap
      */
     public function setRoutes()
     {
-        $this->di->set('router', function() {
+        $this->di->setShared('router', function() {
             // create a router without default rotes
             $router = new Router(false);
 
@@ -156,6 +168,8 @@ class Bootstrap
     }
 
     /**
+     * Getter
+     *
      * @return \Phalcon\DI
      */
     public function getDi()
