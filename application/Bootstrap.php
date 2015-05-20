@@ -5,6 +5,7 @@ namespace Application;
 
 
 use Phalcon\Config\Adapter\Ini;
+use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Logger\Adapter\File as FileAdapter;
 use Phalcon\Mvc\Application;
 use Phalcon\Mvc\Router;
@@ -35,20 +36,21 @@ class Bootstrap
     {
         $config = $this->getIniConfiguration('application');
 
-        $this->di->set('db', [
-            'className' => 'Phalcon\Db\Adapter\Pdo\Mysql',
-            'arguments' => [
-                [
-                    'type' => 'parameter',
-                    'value' => [
-                        'host' => $config->db->host,
-                        'username' => $config->db->username,
-                        'password' => $config->db->password,
-                        'dbname' => $config->db->name
-                    ]
-                ]
-            ]
-        ]);
+        $eventsManager = $this->di->get('eventsManager');
+        $eventsManager->attach('db', new DbListener());
+
+        $this->di->set('db', function() use ($config, $eventsManager) {
+            $connection = new Mysql([
+                'host' => $config->db->host,
+                'username' => $config->db->username,
+                'password' => $config->db->password,
+                'dbname' => $config->db->name
+            ]);
+
+            $connection->setEventsManager($eventsManager);
+
+            return $connection;
+        });
     }
 
     /**
@@ -98,6 +100,11 @@ class Bootstrap
     {
         $application = new Application($this->di);
 
+        $eventsManager = $this->di->get('eventsManager');
+        $eventsManager->attach('application', new ApplicationListener());
+
+        $application->setEventsManager($eventsManager);
+
         $this->registerModules($application);
 
         return $application;
@@ -106,7 +113,7 @@ class Bootstrap
     /**
      * Registers modules
      *
-     * @param \Phalcon\Mvc\Application$application
+     * @param \Phalcon\Mvc\Application $application
      */
     public function registerModules(Application $application)
     {
@@ -141,10 +148,9 @@ class Bootstrap
      */
     public function setLogger()
     {
-        $this->di->set('logger', function() {
+        $this->di->setShared('logger', function() {
             $fileName = date('mdY');
-            $logger = new FileAdapter(APP_DIR . "/logs/{$fileName}.log");
-            $logger->begin();
+            $logger = new FileAdapter(APP_DIR . "/logs/debug{$fileName}.log");
             return $logger;
         });
     }
