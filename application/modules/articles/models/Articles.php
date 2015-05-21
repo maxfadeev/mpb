@@ -42,4 +42,9 @@ class Articles extends Model
      * @var integer
      */
     public $page_views;
+
+    public function initialize()
+    {
+        $this->belongsTo('uid', 'Application\Modules\Users\Models\Users', 'id');
+    }
 } 

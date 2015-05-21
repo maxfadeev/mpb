@@ -55,5 +55,9 @@ class Users extends Model
     {
         // set values of these attributes by default
         $this->skipAttributesOnCreate(['banned', 'suspended', 'active']);
+
+        $this->hasMany('id', 'Application\Modules\Articles\Models\Articles', 'uid', [
+            'alias' => 'articles'
+        ]);
     }
 } 
