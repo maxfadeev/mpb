@@ -20,6 +20,9 @@ class Acl extends ApplicationAcl
             'delete',
             'edit'
         ],
+        'articles' => [
+            'index'
+        ],
         'index' => [
             'index'
         ]
