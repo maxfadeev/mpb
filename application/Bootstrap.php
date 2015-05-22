@@ -36,7 +36,6 @@ class Bootstrap
     {
         $this->setDb();
         $this->setRoutes();
-        $this->setSession();
         $this->setUrl();
         $this->setLogger();
     }
@@ -65,17 +64,7 @@ class Bootstrap
         });
     }
 
-    /**
-     * Sets a Session service
-     */
-    public function setSession()
-    {
-        $this->di->setShared('session', function() {
-            $session = new SessionAdapter();
-            $session->start();
-            return $session;
-        });
-    }
+
 
     /**
      * Sets a Router service
@@ -141,18 +130,6 @@ class Bootstrap
     public function getIniConfiguration($name)
     {
         return new Ini(APP_DIR . "/configs/{$name}.ini");
-    }
-
-    /**
-     * Sets an Url service
-     */
-    public function setUrl()
-    {
-        $this->di->set('url', function() {
-            $url = new Url();
-            $url->setBaseUri('/');
-            return $url;
-        });
     }
 
     /**
