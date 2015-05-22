@@ -45,6 +45,9 @@ class Articles extends Model
 
     public function initialize()
     {
+        // set values of these attributes by default
+        $this->skipAttributesOnCreate(['created_at', 'updated_at', 'page_views']);
+
         $this->belongsTo('uid', 'Application\Modules\Users\Models\Users', 'id');
     }
 } 
