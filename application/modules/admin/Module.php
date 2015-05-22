@@ -6,7 +6,6 @@ namespace Application\Modules\Admin;
 
 use Application\DispatcherListener;
 use Phalcon\DiInterface;
-use Phalcon\Events\Manager;
 use Phalcon\Loader;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
@@ -31,8 +30,8 @@ class Module implements ModuleDefinitionInterface
         $loader = new Loader();
 
         $loader->registerNamespaces([
-            'Application\Modules\Admin\Controllers' => '../application/modules/admin/controllers/',
-            'Application\Modules\Admin\Models' => '../application/modules/admin/models/',
+            'Application\Modules\Admin\Controllers' => APP_DIR . '/modules/admin/controllers/',
+            'Application\Modules\Admin\Models' => APP_DIR . '/modules/admin/models/',
         ]);
 
         $loader->register();
@@ -62,7 +61,7 @@ class Module implements ModuleDefinitionInterface
             $dispatcher = new Dispatcher();
             $dispatcher->setDefaultNamespace('Application\Modules\Admin\Controllers');
 
-            $eventsManager = new Manager();
+            $eventsManager = $this->di->get('eventsManager');
             $eventsManager->attach("dispatch", new DispatcherListener());
 
             $dispatcher->setEventsManager($eventsManager);
@@ -78,11 +77,11 @@ class Module implements ModuleDefinitionInterface
     {
         $this->di->set('view', function() {
             $view = new View();
-            $view->setViewsDir('../application/modules/admin/views/');
+            $view->setViewsDir(APP_DIR . '/modules/admin/views/');
 
             $volt = new Volt($view, $this->di);
             $volt->setOptions([
-                'compiledPath' => '../application/cache/volt/',
+                'compiledPath' => APP_DIR . '/cache/volt/',
                 'compiledSeparator' => '_'
             ]);
 
