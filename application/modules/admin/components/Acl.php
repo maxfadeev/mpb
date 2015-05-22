@@ -15,8 +15,14 @@ class Acl extends ApplicationAcl
      */
     protected $privateResources = [
         'users' => [
-            'add',
             'index',
+            'add',
+            'delete',
+            'edit'
+        ],
+        'articles' => [
+            'index',
+            'add',
             'delete',
             'edit'
         ],
