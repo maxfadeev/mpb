@@ -35,7 +35,7 @@ class Di extends FactoryDefault
      */
     public function setUrl()
     {
-        $this->di->set('url', function() {
+        $this->set('url', function() {
             $url = new Url();
             $url->setBaseUri('/');
             return $url;

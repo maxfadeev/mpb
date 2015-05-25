@@ -36,7 +36,6 @@ class Bootstrap
     {
         $this->setDb();
         $this->setRoutes();
-        $this->setUrl();
         $this->setLogger();
     }
 
