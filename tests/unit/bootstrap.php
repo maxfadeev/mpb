@@ -13,7 +13,7 @@ $loader->register();
 
 $config = new \Phalcon\Config\Adapter\Ini(APP_DIR . "/configs/application.ini");
 
-$di = new \Application\Di();
+$di = new \Phalcon\Di\FactoryDefault();
 
 $di->setShared('db', [
     'className' => 'Phalcon\Db\Adapter\Pdo\Mysql',
