@@ -52,7 +52,7 @@ class Auth extends Component
     {
         $failedLogin = new FailedLogins();
         $failedLogin->uid = $uid;
-        $failedLogin->ip = $this->request->getClientAddress();
+        $failedLogin->ip = filter_var($this->request->getClientAddress(), FILTER_VALIDATE_IP);
         $failedLogin->attempted = time();
 
         $failedLogin->save();
@@ -60,7 +60,7 @@ class Auth extends Component
         $attempts = FailedLogins::count([
             'ip = ?0 AND attempted >= ?1',
             'bind' => [
-                $this->request->getClientAddress(),
+                $failedLogin->ip,
                 time() - 3600 * 6
             ]
         ]);
@@ -111,7 +111,7 @@ class Auth extends Component
     {
         $successLogin = new SuccessLogins();
         $successLogin->uid = $user->id;
-        $successLogin->ip = $this->request->getClientAddress();
+        $successLogin->ip = filter_var($this->request->getClientAddress(), FILTER_VALIDATE_IP);
         $successLogin->user_agent = $this->request->getUserAgent();
         if ($successLogin->save() == false) {
             $message = $successLogin->getMessages();
