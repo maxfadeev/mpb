@@ -9,6 +9,7 @@
 
 {% block navigation %}
     <a href="{{ url("/users") }}">Users</a>
+    <a href="{{ url("/articles") }}">Articles</a>
     <a href="{{ url("") }}">Dashboard</a>
 {% endblock %}
 {% block content %}
