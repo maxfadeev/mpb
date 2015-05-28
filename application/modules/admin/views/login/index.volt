@@ -2,6 +2,9 @@
 
 {% block title %}Admin{% endblock %}
 
+{% block navigation %}
+{% endblock %}
+
 {% block content %}
     {{ content() }}
     <div id="login-block">
