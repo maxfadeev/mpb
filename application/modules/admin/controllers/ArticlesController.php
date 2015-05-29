@@ -8,6 +8,9 @@ use Application\Modules\Admin\Forms\Articles\AddForm;
 use Application\Modules\Articles\Models\Articles;
 use Phalcon\Mvc\Controller;
 
+/**
+ * @property \Application\Modules\Users\Components\Auth auth
+ */
 class ArticlesController extends Controller
 {
     /**
@@ -37,6 +40,7 @@ class ArticlesController extends Controller
                 $articles = new Articles();
 
                 $articles->assign([
+                    'uid' => $this->auth->getIdentity()['id'],
                     'title' => $this->request->getPost('title', 'striptags'),
                     'text' => $this->request->getPost('text')
                 ]);
