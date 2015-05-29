@@ -4,6 +4,8 @@
 namespace Application\Modules\Admin\Forms\Articles;
 
 
+use Phalcon\Forms\Element\Hidden;
+use Phalcon\Forms\Element\Submit;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Element\TextArea;
 use Phalcon\Forms\Form;
@@ -20,6 +22,10 @@ class AddForm extends Form
         $this->addTitleElement();
         //text
         $this->addTextElement();
+
+        $this->add(new Hidden('csrf'));
+
+        $this->add(new Submit('submit', ['value' => 'Submit', 'class' => 'btn']));
     }
 
     /**
