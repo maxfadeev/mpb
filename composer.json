@@ -1,5 +1,7 @@
 {
   "require": {
-    "phalcon/incubator": "dev-master"
+    "phalcon/incubator": "dev-master",
+    "artatol/wysiwygjs": "dev-master",
+    "components/jquery": "dev-master"
   }
 }

@@ -4,29 +4,101 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "30190e3c6e34e84e15c61b4cc6d699d9",
+    "hash": "4184d13d14b3d424b2d49736cb289f2a",
     "packages": [
+        {
+            "name": "artatol/wysiwygjs",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Artatol/wysiwyg.js.git",
+                "reference": "495aa8229a0d0a7ffc6bfe188fe5149682f499f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Artatol/wysiwyg.js/zipball/495aa8229a0d0a7ffc6bfe188fe5149682f499f0",
+                "reference": "495aa8229a0d0a7ffc6bfe188fe5149682f499f0",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "wysiwyg.js",
+                    "homepage": "http://wysiwygjs.github.io/"
+                }
+            ],
+            "description": "wysiwyg.js",
+            "homepage": "http://wysiwygjs.github.io/",
+            "time": "2015-04-29 09:53:17"
+        },
+        {
+            "name": "components/jquery",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/jquery.git",
+                "reference": "7b1d1104656a092423fbfba13c5920e9bbba290c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/jquery/zipball/7b1d1104656a092423fbfba13c5920e9bbba290c",
+                "reference": "7b1d1104656a092423fbfba13c5920e9bbba290c",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "jquery.js"
+                    ],
+                    "files": [
+                        "jquery.min.js",
+                        "jquery.min.map",
+                        "jquery-migrate.js",
+                        "jquery-migrate.min.js"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "John Resig",
+                    "email": "jeresig@gmail.com"
+                }
+            ],
+            "description": "jQuery JavaScript Library",
+            "homepage": "http://jquery.com",
+            "time": "2015-05-08 05:04:47"
+        },
         {
             "name": "phalcon/incubator",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalcon/incubator.git",
-                "reference": "f1950e97f1b0c51cdec099ae9de9499159b2957f"
+                "reference": "bbcffc6b24a00728b61e8e9d1c36b04df0d16335"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalcon/incubator/zipball/f1950e97f1b0c51cdec099ae9de9499159b2957f",
-                "reference": "f1950e97f1b0c51cdec099ae9de9499159b2957f",
+                "url": "https://api.github.com/repos/phalcon/incubator/zipball/bbcffc6b24a00728b61e8e9d1c36b04df0d16335",
+                "reference": "bbcffc6b24a00728b61e8e9d1c36b04df0d16335",
                 "shasum": ""
             },
             "require": {
                 "ext-phalcon": "~2.0",
-                "php": ">=5.3.9",
+                "php": ">=5.3.21",
                 "swiftmailer/swiftmailer": ">=5.2"
             },
             "require-dev": {
                 "codeception/codeception": "*",
+                "mockery/mockery": "*",
                 "php-mock/php-mock": "<0.6",
                 "phpunit/phpunit": "4.6.*",
                 "squizlabs/php_codesniffer": "2.*"
@@ -54,7 +126,7 @@
                 "incubator",
                 "phalcon"
             ],
-            "time": "2015-05-07 21:48:09"
+            "time": "2015-05-26 07:29:20"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -113,7 +185,9 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "phalcon/incubator": 20
+        "phalcon/incubator": 20,
+        "artatol/wysiwygjs": 20,
+        "components/jquery": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
