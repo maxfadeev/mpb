@@ -4,6 +4,7 @@
 namespace Application;
 
 
+use Phalcon\Config;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Logger\Adapter\File as FileAdapter;
@@ -34,27 +35,26 @@ class Bootstrap
      */
     public function registerServices()
     {
-        $this->setDb();
+        $this->setDb($this->getIniConfiguration('application')->db);
         $this->setRoutes();
         $this->setLogger();
     }
 
     /**
      * Sets a Db service
+     * @param \Phalcon\Config $config
      */
-    public function setDb()
+    public function setDb(Config $config)
     {
-        $config = $this->getIniConfiguration('application');
-
         $eventsManager = $this->di->get('eventsManager');
         $eventsManager->attach('db', new DbListener());
 
         $this->di->setShared('db', function() use ($config, $eventsManager) {
             $connection = new Mysql([
-                'host' => $config->db->host,
-                'username' => $config->db->username,
-                'password' => $config->db->password,
-                'dbname' => $config->db->name
+                'host' => $config['host'],
+                'username' => $config['username'],
+                'password' => $config['password'],
+                'dbname' => $config['name']
             ]);
 
             $connection->setEventsManager($eventsManager);
