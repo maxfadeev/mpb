@@ -5,6 +5,7 @@ namespace Application\Modules\Admin\Controllers;
 
 
 use Application\Modules\Admin\Forms\Articles\AddForm;
+use Application\Modules\Admin\Forms\Articles\EditForm;
 use Application\Modules\Articles\Models\Articles;
 use Phalcon\Mvc\Controller;
 
@@ -52,6 +53,37 @@ class ArticlesController extends Controller
                 }
 
                 $this->flash->error($articles->getMessages());
+            }
+        }
+
+        $this->view->setVar('form', $form);
+    }
+
+    /**
+     * Update the article by its id
+     *
+     * @param integer $id the id of the article to be edited
+     */
+    public function editAction($id)
+    {
+        $article = Articles::findFirst(['id' => (int)$id]);
+
+        if ($article == false) {
+            $this->flash->error('User was not found');
+            $this->dispatcher->forward(['action' => 'index']);
+            return;
+        }
+
+        $form = new EditForm($article);
+
+        if ($this->request->isPost()) {
+            // check if form data are valid and CSRF token is right
+            if ($form->isValid($this->request->getPost()) && $this->security->checkToken()) {
+                $article->assign([
+                    'uid' => $this->auth->getIdentity()['id'],
+                    'title' => $this->request->getPost('title', 'striptags'),
+                    'text' => $this->request->getPost('text')
+                ]);
             }
         }
 
