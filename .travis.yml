@@ -13,8 +13,4 @@ matrix:
   allow_failures:
     - php: hhvm
 
-cache:
-  directories:
-    - vendor
-
 script: phpunit -c phpunit.xml --coverage-text
