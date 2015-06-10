@@ -29,7 +29,7 @@ class DispatcherListener extends Component
                     'action' => 'index'
                 ]);
 
-                return false;
+                return;
             }
 
             $actionName = $dispatcher->getActionName();
@@ -41,7 +41,7 @@ class DispatcherListener extends Component
                     'action' => 'index'
                 ]);
 
-                return false;
+                return;
             }
         }
     }
