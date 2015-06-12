@@ -24,6 +24,7 @@ class Module implements ModuleDefinitionInterface
      * Registers an autoloader related to the module
      *
      * @param \Phalcon\DiInterface $di
+     * @return \Phalcon\Loader
      */
     public function registerAutoloaders(DiInterface $di = null)
     {
@@ -34,7 +35,7 @@ class Module implements ModuleDefinitionInterface
             'Application\Modules\Admin\Models' => APP_DIR . '/modules/admin/models/',
         ]);
 
-        $loader->register();
+        return $loader->register();
     }
 
     /**
