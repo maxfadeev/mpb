@@ -84,9 +84,49 @@ class ArticlesController extends Controller
                     'title' => $this->request->getPost('title', 'striptags'),
                     'text' => $this->request->getPost('text')
                 ]);
+
+                if ($article->save() == true) {
+                    $this->flash->success("Article has been updated");
+                    $this->dispatcher->forward(['action' => 'index']);
+                    return;
+                }
             }
         }
 
         $this->view->setVar('form', $form);
+    }
+
+    /**
+     * Deletes the article by its id
+     * If the article is not found, forwards a request to the index action
+     *
+     * @param integer $id the id of the article to be deleted
+     * @param string $token csrf token value
+     */
+    public function deleteAction($id, $token)
+    {
+        // verify if csrf token is right
+        if ($token !== $this->security->getSessionToken()) {
+            $this->flash->error("CSRF verification error");
+            $this->dispatcher->forward(['action' => 'index']);
+            return;
+        }
+
+        $article = Articles::findFirst(['id' => (int) $id]);
+
+        if ($article == false) {
+            $this->flash->error('Article was not found');
+            $this->dispatcher->forward(['action' => 'index']);
+            return;
+        }
+
+        if ($article->delete() == false) {
+            $this->flash->error($article->getMessages());
+        } else {
+            $this->flash->success('Article has been deleted successfully');
+        }
+
+        // anyway forward to the index action
+        $this->dispatcher->forward(['action' => 'index']);
     }
 } 
