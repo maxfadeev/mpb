@@ -68,7 +68,7 @@ class UsersController extends Controller
      */
     public function editAction($id)
     {
-        $user = Users::findFirst(['id' => (int) $id]);
+        $user = Users::findFirstById((int) $id);
 
         if ($user == false) {
             $this->flash->error('User was not found');
@@ -123,7 +123,7 @@ class UsersController extends Controller
             return;
         }
 
-        $user = Users::findFirst(['id' => (int) $id]);
+        $user = Users::findFirstById((int) $id);
 
         if ($user == false) {
             $this->flash->error('User was not found');

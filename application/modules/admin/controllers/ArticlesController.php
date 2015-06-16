@@ -66,7 +66,7 @@ class ArticlesController extends Controller
      */
     public function editAction($id)
     {
-        $article = Articles::findFirst(['id' => (int)$id]);
+        $article = Articles::findFirstById((int) $id);
 
         if ($article == false) {
             $this->flash->error('User was not found');
@@ -112,7 +112,7 @@ class ArticlesController extends Controller
             return;
         }
 
-        $article = Articles::findFirst(['id' => (int) $id]);
+        $article = Articles::findFirstById((int) $id);
 
         if ($article == false) {
             $this->flash->error('Article was not found');
