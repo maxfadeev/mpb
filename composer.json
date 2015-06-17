@@ -1,7 +1,19 @@
 {
   "require": {
     "phalcon/incubator": "dev-master",
-    "artatol/wysiwygjs": "dev-master",
-    "components/jquery": "dev-master"
+    "bower-asset/wysiwygjs": "dev-master",
+    "fxp/composer-asset-plugin": "~1.0"
+  },
+  "extra": {
+    "asset-repositories": [
+      {
+        "type": "bower-vcs",
+        "url": "https://github.com/Artatol/wysiwyg.js.git",
+        "name": "bower-asset/wysiwygjs"
+      }
+    ],
+    "asset-installer-paths": {
+      "bower-asset-library": "public/vendor"
+    }
   }
 }
