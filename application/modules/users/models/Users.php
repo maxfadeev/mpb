@@ -69,4 +69,13 @@ class Users extends Model
     {
         return parent::findFirstById((int) $id);
     }
+
+    /**
+     * @param string $login, the login of the user to be found
+     * @return \Phalcon\Mvc\Model
+     */
+    public static function findFirstByLogin($login)
+    {
+        return parent::findFirstByLogin($login);
+    }
 } 
