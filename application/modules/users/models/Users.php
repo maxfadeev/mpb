@@ -60,4 +60,13 @@ class Users extends Model
             'alias' => 'articles'
         ]);
     }
+
+    /**
+     * @param int $id, the id of the user to be found
+     * @return \Phalcon\Mvc\Model
+     */
+    public static function findFirstById($id)
+    {
+        return parent::findFirstById((int) $id);
+    }
 } 

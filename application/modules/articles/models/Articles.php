@@ -50,4 +50,13 @@ class Articles extends Model
 
         $this->belongsTo('uid', 'Application\Modules\Users\Models\Users', 'id');
     }
+
+    /**
+     * @param int $id, the id of the article to be found
+     * @return \Phalcon\Mvc\Model
+     */
+    public static function findFirstById($id)
+    {
+        return parent::findFirstById((int) $id);
+    }
 } 
