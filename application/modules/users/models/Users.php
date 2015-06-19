@@ -63,7 +63,7 @@ class Users extends Model
 
     /**
      * @param int $id, the id of the user to be found
-     * @return \Phalcon\Mvc\Model
+     * @return \Phalcon\Mvc\Model|boolean
      */
     public static function findFirstById($id)
     {
@@ -72,7 +72,7 @@ class Users extends Model
 
     /**
      * @param string $login, the login of the user to be found
-     * @return \Phalcon\Mvc\Model
+     * @return \Phalcon\Mvc\Model|boolean
      */
     public static function findFirstByLogin($login)
     {
