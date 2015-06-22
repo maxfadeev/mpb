@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Tests\Unit\Modules\Admin\Forms\Articles;
+namespace Tests\Unit\Modules\Admin\Forms\Users;
 
 
 use Application\Modules\Admin\Forms\Users\AddForm;
