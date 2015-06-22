@@ -14,3 +14,7 @@
 {% endblock %}
 {% block content %}
 {% endblock %}
+
+{% block scripts %}
+    <script type='text/javascript' src='http://cdn.everything.io/kickstart/3.x/js/kickstart.min.js'></script>
+{% endblock %}
