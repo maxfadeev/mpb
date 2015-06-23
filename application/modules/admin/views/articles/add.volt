@@ -31,7 +31,7 @@
 
 {% block scripts %}
     <script src="//code.jquery.com/jquery-2.1.4.js"></script>
-    <script type='text/javascript' src='/vendor/wysiwygjs/src/wysiwyg.js'></script>
-    <script type='text/javascript' src='/vendor/wysiwygjs/src/wysiwyg-editor.js'></script>
-    <script type='text/javascript' src='/js/main.js'></script>
+    <script src='/vendor/wysiwygjs/src/wysiwyg.js'></script>
+    <script src='/vendor/wysiwygjs/src/wysiwyg-editor.js'></script>
+    <script src='/js/main.js'></script>
 {% endblock %}
