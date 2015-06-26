@@ -3,6 +3,7 @@ php:
   - 5.5
   - 5.6
 before_install:
+  - phpenv config-add ./tests/unit/ci/phalcon.ini
   - composer install
   - ./tests/unit/ci/setup_db.sh
 script: phpunit --configuration phpunit.xml
