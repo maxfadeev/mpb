@@ -6,14 +6,18 @@ define('APP_DIR', BASE_DIR . '/application');
 require BASE_DIR . '/vendor/autoload.php';
 
 $loader = new \Phalcon\Loader();
-// register an application namespace
-$loader->registerNamespaces(['Application' => APP_DIR]);
 
-$loader->registerClasses(['Application\Bootstrap' => APP_DIR . '/Bootstrap.php']);
+// register the application classes
+$loader->registerClasses([
+    'Application\Bootstrap' => APP_DIR . '/Bootstrap.php',
+    'Application\ApplicationListener' => APP_DIR . '/ApplicationListener.php',
+    'Application\Acl' => APP_DIR . '/Acl.php',
+    'Application\DbListener' => APP_DIR . '/DbListener.php',
+    'Application\Di' => APP_DIR . '/Di.php',
+    'Application\DispatcherListener' => APP_DIR . '/DispatcherListener.php'
+]);
 
 $loader->register();
-
-var_dump(new Application\Bootstrap());
 
 $config = new \Phalcon\Config\Adapter\Ini(APP_DIR . "/configs/application.ini");
 
