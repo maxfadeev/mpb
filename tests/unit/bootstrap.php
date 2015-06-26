@@ -9,8 +9,7 @@ $loader = new \Phalcon\Loader();
 // register an application namespace
 $loader->registerNamespaces(['Application' => APP_DIR]);
 
-echo 'Test Loading...';
-var_dump(APP_DIR);
+var_dump($loader->getNamespaces());
 
 $loader->register();
 
