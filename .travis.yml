@@ -3,12 +3,6 @@ php:
   - 5.5
   - 5.6
 before_install:
-  - composer update
-  - composer --prefer-source install
-  - composer require phalcon/zephir:dev-master
+  - composer install
   - ./tests/unit/ci/setup_db.sh
-before_script:
-  - (cd vendor/phalcon/zephir; ./unit-tests/ci/before_install.sh; ./install)
-  - ./vendor/bin/zephir generate
-  - (cd ext; export CFLAGS="-g3 -O1 -std=gnu90 -Wall -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-phalcon && make --silent -j4 && sudo make --silent install && phpenv config-add ../unit-tests/ci/phalcon.ini)
 script: phpunit --configuration phpunit.xml
