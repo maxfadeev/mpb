@@ -4,7 +4,7 @@ php:
   - 5.6
 before_install:
   - git clone --depth=1 git://github.com/phalcon/cphalcon.git
-  - (cd cphalcon/build; ./install;)
+  - (cd cphalcon/build; ./travis-install;)
   - phpenv config-add ./tests/unit/ci/phalcon.ini
   - composer install
   - mysql -uroot -e 'create database blog charset=utf8 collate=utf8_unicode_ci;' && mysql -uroot blog < "./data/blog.sql"
