@@ -11,7 +11,7 @@ $loader->registerNamespaces(['Application' => APP_DIR]);
 
 echo 'Test Loading...';
 $b = new \Application\Bootstrap();
-var_dump($b);
+var_dump(APP_DIR);
 
 $loader->register();
 
