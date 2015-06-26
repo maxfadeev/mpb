@@ -9,6 +9,10 @@ $loader = new \Phalcon\Loader();
 // register an application namespace
 $loader->registerNamespaces(['Application' => APP_DIR]);
 
+echo 'Test Loading...';
+$b = new \Application\Bootstrap();
+var_dump($b);
+
 $loader->register();
 
 $config = new \Phalcon\Config\Adapter\Ini(APP_DIR . "/configs/application.ini");
