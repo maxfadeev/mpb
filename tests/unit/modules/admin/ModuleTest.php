@@ -16,8 +16,9 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
     {
         $loader = new Loader();
         $loader->registerClasses([
-            'Module' => APP_DIR . '/modules/admin/Module.php'
+            'Application\Modules\Admin\Module' => APP_DIR . '/modules/admin/Module.php'
         ]);
+        $loader->register();
 
         $this->di = new Di();
     }
