@@ -5,8 +5,7 @@ php:
 before_install:
   - git clone --depth=1 git://github.com/phalcon/cphalcon.git
   - (cd cphalcon/build/32bits; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks"; phpize && ./configure --enable-phalcon && make -j2 && sudo make install)
-  - (ls -l)
   - phpenv config-add ./tests/unit/ci/phalcon.ini
   - composer install
-  - ./tests/unit/ci/setup_db.sh
+  - sudo ./tests/unit/ci/setup_db.sh
 script: phpunit --configuration phpunit.xml
