@@ -3,8 +3,8 @@ php:
   - 5.5
   - 5.6
 before_install:
-  - git clone -q https://github.com/phalcon/cphalcon.git
-  - (cd cphalcon/build; sudo ./install && phpenv config-add ./tests/unit/ci/phalcon.ini)
+  - git clone --depth=1 git://github.com/phalcon/cphalcon.git
+  - (cd cphalcon/build; sudo ./travis-install && phpenv config-add ./tests/unit/ci/phalcon.ini)
   - composer install
   - ./tests/unit/ci/setup_db.sh
 script: phpunit --configuration phpunit.xml
