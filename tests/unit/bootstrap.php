@@ -7,14 +7,9 @@ require BASE_DIR . '/vendor/autoload.php';
 
 $loader = new \Phalcon\Loader();
 
-// register the application classes
-$loader->registerClasses([
-    'Application\Bootstrap' => APP_DIR . '/Bootstrap.php',
-    'Application\ApplicationListener' => APP_DIR . '/ApplicationListener.php',
-    'Application\Acl' => APP_DIR . '/Acl.php',
-    'Application\DbListener' => APP_DIR . '/DbListener.php',
-    'Application\Di' => APP_DIR . '/Di.php',
-    'Application\DispatcherListener' => APP_DIR . '/DispatcherListener.php'
+// register the application namespace
+$loader->registerNamespaces([
+    "Application"    => APP_DIR . "/",
 ]);
 
 $loader->register();
