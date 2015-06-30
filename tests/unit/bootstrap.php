@@ -12,6 +12,7 @@ $loader->registerNamespaces([
     'Application' => APP_DIR . '/'
 ]);
 
+var_dump(new \Application\Bootstrap());
 
 $loader->register();
 
