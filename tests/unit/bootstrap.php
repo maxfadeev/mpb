@@ -11,7 +11,11 @@ $loader = new \Phalcon\Loader();
 $loader->registerNamespaces([
     'Application' => APP_DIR . '/',
     'Application\Modules\Admin' => APP_DIR . '/modules/admin/',
-    'Application\Modules\Admin\Components' => APP_DIR . '/modules/admin/components'
+    'Application\Modules\Admin\Components' => APP_DIR . '/modules/admin/components',
+    'Application\Modules\Admin\Models' => APP_DIR . '/modules/admin/models',
+    'Application\Modules\Admin\Controllers' => APP_DIR . '/modules/admin/controllers',
+    'Application\Modules\Admin\Forms' => APP_DIR . '/modules/admin/forms',
+    'Application\Modules\Users\Models' => APP_DIR . '/modules/users/models'
 ]);
 
 $loader->register();
