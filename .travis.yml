@@ -8,4 +8,7 @@ before_install:
   - phpenv config-add ./tests/unit/ci/phalcon.ini
   - composer install
   - mysql -uroot -e 'create database blog charset=utf8 collate=utf8_unicode_ci;' && mysql -uroot blog < "./data/blog.sql"
+before_script:
+  - mkdir ./application/cache/acl
+  - mkdir ./application/logs
 script: phpunit --configuration phpunit.xml

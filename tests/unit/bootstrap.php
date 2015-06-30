@@ -9,15 +9,7 @@ $loader = new \Phalcon\Loader();
 
 // register the application namespaces
 $loader->registerNamespaces([
-    'Application' => APP_DIR . '/',
-    'Application\Modules\Admin' => APP_DIR . '/modules/admin/',
-    'Application\Modules\Admin\Components' => APP_DIR . '/modules/admin/components',
-    'Application\Modules\Admin\Models' => APP_DIR . '/modules/admin/models',
-    'Application\Modules\Admin\Controllers' => APP_DIR . '/modules/admin/controllers',
-    'Application\Modules\Admin\Forms' => APP_DIR . '/modules/admin/forms',
-    'Application\Modules\Admin\Forms\Articles' => APP_DIR . '/modules/admin/forms/articles',
-    'Application\Modules\Admin\Forms\Users' => APP_DIR . '/modules/admin/forms/users',
-    'Application\Modules\Users\Models' => APP_DIR . '/modules/users/models'
+    'Application' => APP_DIR . '/'
 ]);
 
 $loader->register();
@@ -32,9 +24,9 @@ $di->setShared('db', [
         [
             'type' => 'parameter',
             'value' => [
-                'host' => '127.0.0.1',
-                'username' => 'travis',
-                //'password' => $config->db->password,
+                'host' => '192.168.56.102',
+                'username' => $config->db->username,
+                'password' => $config->db->password,
                 'dbname' => $config->db->name
             ]
         ]
