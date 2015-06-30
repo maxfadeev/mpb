@@ -14,6 +14,9 @@ $loader->registerNamespaces([
 
 $loader->register();
 
+use Application\Bootstrap;
+var_dump(new Bootstrap());
+
 use Application\Travis\TravisTest;
 var_dump(new TravisTest());
 
