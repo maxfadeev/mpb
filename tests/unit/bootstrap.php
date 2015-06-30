@@ -15,6 +15,8 @@ $loader->registerNamespaces([
     'Application\Modules\Admin\Models' => APP_DIR . '/modules/admin/models',
     'Application\Modules\Admin\Controllers' => APP_DIR . '/modules/admin/controllers',
     'Application\Modules\Admin\Forms' => APP_DIR . '/modules/admin/forms',
+    'Application\Modules\Admin\Forms\Articles' => APP_DIR . '/modules/admin/forms/articles',
+    'Application\Modules\Admin\Forms\Users' => APP_DIR . '/modules/admin/forms/users',
     'Application\Modules\Users\Models' => APP_DIR . '/modules/users/models'
 ]);
 
