@@ -7,10 +7,11 @@ require BASE_DIR . '/vendor/autoload.php';
 
 $loader = new \Phalcon\Loader();
 
-// register the application classes
+// register the application namespaces
 $loader->registerNamespaces([
     'Application' => APP_DIR . '/',
-    'Application\Modules\Admin' => APP_DIR . '/modules/admin/'
+    'Application\Modules\Admin' => APP_DIR . '/modules/admin/',
+    'Application\Modules\Admin\Components' => APP_DIR . '/modules/admin/components'
 ]);
 
 $loader->register();
