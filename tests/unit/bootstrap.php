@@ -9,16 +9,11 @@ $loader = new \Phalcon\Loader();
 
 // register the application classes
 $loader->registerNamespaces([
-    'Application' => APP_DIR . '/'
+    'Application' => APP_DIR . '/',
+    'Application\Modules\Admin' => APP_DIR . '/modules/admin/'
 ]);
 
 $loader->register();
-
-use Application\Bootstrap;
-var_dump(new Bootstrap());
-
-use Application\Travis\TravisTest;
-var_dump(new TravisTest());
 
 $config = new \Phalcon\Config\Adapter\Ini(APP_DIR . "/configs/application.ini");
 
