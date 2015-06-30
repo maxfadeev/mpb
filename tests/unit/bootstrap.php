@@ -14,7 +14,8 @@ $loader->registerNamespaces([
 
 $loader->register();
 
-var_dump(new Application\Bootstrap());
+use Application\Travis\TravisTest;
+var_dump(new TravisTest());
 
 $config = new \Phalcon\Config\Adapter\Ini(APP_DIR . "/configs/application.ini");
 
