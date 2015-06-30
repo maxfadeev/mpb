@@ -12,9 +12,9 @@ $loader->registerNamespaces([
     'Application' => APP_DIR . '/'
 ]);
 
-var_dump(new \Application\Bootstrap());
-
 $loader->register();
+
+var_dump(new Application\Bootstrap());
 
 $config = new \Phalcon\Config\Adapter\Ini(APP_DIR . "/configs/application.ini");
 
