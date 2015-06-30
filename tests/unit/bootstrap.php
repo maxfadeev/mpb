@@ -32,7 +32,7 @@ $di->setShared('db', [
         [
             'type' => 'parameter',
             'value' => [
-                'host' => '192.168.56.102',
+                'host' => 'localhost',
                 'username' => $config->db->username,
                 'password' => $config->db->password,
                 'dbname' => $config->db->name
