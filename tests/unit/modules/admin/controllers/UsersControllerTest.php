@@ -20,10 +20,8 @@ class UsersControllerTest extends \PHPUnit_Framework_TestCase
 
         $paramsToView = $controller->view->getParamsToView();
         $this->assertArrayHasKey('users', $paramsToView);
-        $this->assertEquals(Users::find(), $controller->view->getParamsToView()['users']);
 
         $this->assertArrayHasKey('token', $paramsToView);
-
         $this->assertTrue($controller->security->checkToken($paramsToView['token']));
     }
 }
