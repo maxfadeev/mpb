@@ -11,4 +11,4 @@ before_install:
 before_script:
   - mkdir ./application/cache/acl
   - mkdir ./application/logs
-script: phpunit --configuration phpunit.xml
+script: phpunit --configuration phpunit-travis.xml
