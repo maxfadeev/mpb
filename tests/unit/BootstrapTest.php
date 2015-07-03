@@ -5,12 +5,23 @@ namespace Tests\Unit;
 
 
 use Application\Bootstrap;
+use Application\Modules\Users\Models\Users;
 use Phalcon\Config;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Mvc\Application;
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
 
+/**
+ * @backupGlobals disabled
+ * @backupStaticAttributes disabled
+ */
 class BootstrapTest extends \PHPUnit_Framework_TestCase
 {
+    private static $pdo;
+
+    private $connection;
+
     public function testSetsDiWithConstructor()
     {
         $bootstrap = new Bootstrap();
@@ -75,20 +86,13 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetDb(Ini $config)
     {
-        //$bootstrap = new Bootstrap();
+        $bootstrap = new Bootstrap();
 
-        //$dbConfig = $config->db;
-        //$dbConfig->host = '192.168.56.102';
+        $dbConfig = $config->db;
 
-        //$bootstrap->setDb($dbConfig);
+        $bootstrap->setDb($dbConfig);
 
-        //$this->assertTrue($bootstrap->getDi()->has('db'));
-
-        //$db = $bootstrap->getDi()->get('db');
-
-        //$this->assertInstanceOf('Phalcon\Db\Adapter\Pdo\Mysql', $db);
-
-        //$this->assertTrue($db->getEventsManager()->hasListeners('db'));
+        $this->assertTrue($bootstrap->getDi()->has('db'));
     }
 
     public function testRoutesConfigurationExists()
