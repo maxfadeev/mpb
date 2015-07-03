@@ -5,7 +5,8 @@ php:
 before_install:
   - git clone --depth=1 git://github.com/phalcon/cphalcon.git
   - (cd cphalcon/build; ./install;)
-  - phpenv config-add ./tests/unit/ci/phalcon.ini
+  - touch ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/phalcon.ini
+  - echo 'extension=phalcon.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/phalcon.ini
   - composer install
   - mysql -uroot -e 'create database blog charset=utf8 collate=utf8_unicode_ci;' && mysql -uroot blog < "./data/blog.sql"
 before_script:
