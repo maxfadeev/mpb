@@ -9,19 +9,9 @@ use Application\Modules\Users\Models\Users;
 use Phalcon\Config;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Mvc\Application;
-use PHPUnit_Extensions_Database_DataSet_IDataSet;
-use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
 
-/**
- * @backupGlobals disabled
- * @backupStaticAttributes disabled
- */
 class BootstrapTest extends \PHPUnit_Framework_TestCase
 {
-    private static $pdo;
-
-    private $connection;
-
     public function testSetsDiWithConstructor()
     {
         $bootstrap = new Bootstrap();
