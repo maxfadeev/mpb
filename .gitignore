@@ -2,3 +2,4 @@
 application/cache
 vendor
 application/logs
+data/sqlite_dump.sql
