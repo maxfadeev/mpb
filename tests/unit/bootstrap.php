@@ -19,6 +19,6 @@ $config = new \Phalcon\Config\Adapter\Ini(APP_DIR . "/configs/application.ini");
 $di = new \Phalcon\Di\FactoryDefault();
 
 $connection = new \Phalcon\Db\Adapter\Pdo\Sqlite(['dbname' => ':memory:']);
-$connection->execute(file_get_contents(BASE_DIR . '/data/sqlite.sql'));
+$connection->execute(file_get_contents(BASE_DIR . '/data/sqlite_dump.sql'));
 
 $di->set('db', $connection);
