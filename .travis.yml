@@ -10,7 +10,5 @@ before_install:
   - composer install
   - mysql -uroot -e 'create database blog charset=utf8 collate=utf8_unicode_ci;' && mysql -uroot blog < "./data/blog.sql"
 before_script:
-  - mkdir ./application/cache
-  - mkdir ./application/cache/acl
-  - mkdir ./application/logs
+  - mkdir ./src/cache; mkdir ./src/cache/acl; mkdir ./src/logs;
 script: phpunit --configuration phpunit-travis.xml
