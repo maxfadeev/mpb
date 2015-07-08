@@ -18,7 +18,8 @@ $loader->registerNamespaces([
     'Application\Modules\Admin\Forms\Articles' => APP_DIR . '/modules/admin/forms/articles',
     'Application\Modules\Admin\Forms\Users' => APP_DIR . '/modules/admin/forms/users',
     'Application\Modules\Users\Models' => APP_DIR . '/modules/users/models',
-    'Application\Modules\Users\Components' => APP_DIR . '/modules/users/components'
+    'Application\Modules\Users\Components' => APP_DIR . '/modules/users/components',
+    'Application\Modules\Users' => APP_DIR . '/modules/users/'
 ]);
 
 $loader->register();
