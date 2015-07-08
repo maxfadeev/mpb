@@ -6,7 +6,10 @@ namespace Application\Modules\Users;
 
 use Phalcon\DiInterface;
 use Phalcon\Loader;
+use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
+use Phalcon\Mvc\View;
+use Phalcon\Mvc\View\Engine\Volt;
 
 class Module implements ModuleDefinitionInterface
 {
@@ -19,17 +22,18 @@ class Module implements ModuleDefinitionInterface
      * Registers an autoloader related to the module
      *
      * @param \Phalcon\DiInterface $di
+     * @return \Phalcon\Loader
      */
     public function registerAutoloaders(DiInterface $di = null)
     {
         $loader = new Loader();
 
         $loader->registerNamespaces([
-            'Application\Modules\Users\Controllers' => '../application/modules/users/controllers/',
-            'Application\Modules\Users\Models' => '../application/modules/users/models/',
+            'Application\Modules\Users\Controllers' => APP_DIR . '/modules/users/controllers/',
+            'Application\Modules\Users\Models' => APP_DIR . '/modules/users/models/',
         ]);
 
-        $loader->register();
+        return $loader->register();
     }
 
     /**
@@ -64,8 +68,15 @@ class Module implements ModuleDefinitionInterface
     {
         $this->di->set('view', function() {
             $view = new View();
-            $view->setViewsDir('../application/modules/users/views/');
-            $view->registerEngines(['.volt' => 'Phalcon\Mvc\View\Engine\Volt']);
+            $view->setViewsDir(APP_DIR . '/modules/users/views/');
+
+            $volt = new Volt($view, $this->di);
+            $volt->setOptions([
+                'compiledPath' => APP_DIR . '/cache/volt/',
+                'compiledSeparator' => '_'
+            ]);
+
+            $view->registerEngines(['.volt' => $volt]);
             return $view;
         });
     }
