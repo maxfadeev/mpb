@@ -1,7 +1,7 @@
 <?php
 
 define('BASE_DIR', dirname(__DIR__));
-define('APP_DIR', BASE_DIR . '/application');
+define('APP_DIR', BASE_DIR . '/src');
 
 $loader = new \Phalcon\Loader();
 // register an application namespace

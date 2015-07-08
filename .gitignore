@@ -1,5 +1,5 @@
 .idea*
-application/cache
+src/cache
 vendor
-application/logs
+src/logs
 data/sqlite_dump.sql

@@ -1,7 +1,7 @@
 <?php
 
 define('BASE_DIR', dirname(dirname(__DIR__)));
-define('APP_DIR', BASE_DIR . '/application');
+define('APP_DIR', BASE_DIR . '/src');
 
 require BASE_DIR . '/vendor/autoload.php';
 
