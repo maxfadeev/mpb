@@ -41,7 +41,7 @@ class ArticlesController extends Controller
                 $articles = new Articles();
 
                 $articles->assign([
-                    'uid' => $this->auth->getIdentity()['id'],
+                    'author_id' => $this->auth->getIdentity()['id'],
                     'title' => $this->request->getPost('title', 'striptags'),
                     'text' => $this->request->getPost('text')
                 ]);
@@ -80,7 +80,7 @@ class ArticlesController extends Controller
             // check if form data are valid and CSRF token is right
             if ($form->isValid($this->request->getPost()) && $this->security->checkToken()) {
                 $article->assign([
-                    'uid' => $this->auth->getIdentity()['id'],
+                    'author_id' => $this->auth->getIdentity()['id'],
                     'title' => $this->request->getPost('title', 'striptags'),
                     'text' => $this->request->getPost('text')
                 ]);
