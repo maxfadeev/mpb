@@ -69,7 +69,6 @@ class UsersController extends Controller
     public function editAction($id)
     {
         $user = Users::findFirstById((int) $id);
-
         if ($user == false) {
             $this->flash->error('User was not found');
             $this->dispatcher->forward(['action' => 'index']);
@@ -79,24 +78,28 @@ class UsersController extends Controller
         $form = new EditForm($user);
 
         if ($this->request->isPost()) {
+            // Initially, a change password field is not required in order to miss changing the user's password
+            // every time the user needs to edit data.
+            // Check whether a password field is empty and, if so, set default validators and change
+            // a password value
+            if (empty($this->request->getPost('changePassword')) === false) {
+                $form->setPasswordValidators();
+                $user->assign(['password' => $this->security->hash($this->request->getPost('changePassword'))]);
+            }
             // check if form data are valid and CSRF token is right
             if ($form->isValid($this->request->getPost()) && $this->security->checkToken()) {
-                $user->assign([
-                    'login' => $this->request->getPost('login', 'striptags'),
+                $user->assign(['login' => $this->request->getPost('login', 'striptags'),
                     'email' => $this->request->getPost('email', 'email'),
-                    'password' => $this->security->hash($this->request->getPost('changePassword')),
                     'role' => $this->request->getPost('role', 'int'),
-                    'banned' => $form->isBanned($this->request->getPost('status', 'int')),
-                    'suspended' => $form->isSuspended($this->request->getPost('status', 'int')),
-                    'active' => $form->isActive($this->request->getPost('status', 'int'))
-                ]);
+                    'banned' => $form->isBanned(),
+                    'suspended' => $form->isSuspended(),
+                    'active' => $form->isActive()]);
 
                 if ($user->save() == true) {
                     $this->flash->success("User has been updated");
                     $this->dispatcher->forward(['action' => 'index']);
                     return;
                 }
-
                 $this->flash->error($user->getMessages());
             }
         }

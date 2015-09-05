@@ -31,9 +31,16 @@ class EditForm extends AddForm
      */
     public function addPasswordElement()
     {
-        $password = new Password('changePassword');
-        $password->setLabel('Change password');
-        $password->addValidators([
+        $password = (new Password('changePassword'))
+            ->setLabel('Change password');
+        $this->add($password);
+
+        $this->add(new Password('confirmChangePassword'));
+    }
+
+    public function setPasswordValidators()
+    {
+        $this->get('changePassword')->addValidators([
             new PresenceOf(['message' => 'The password is required']),
             new StringLength([
                 'min' => 8,
@@ -45,14 +52,6 @@ class EditForm extends AddForm
             ])
         ]);
 
-        $this->add($password);
-
-        $confirmPassword = new Password('confirmChangePassword');
-        $confirmPassword->addValidator(new PresenceOf([
-            'message' => 'The confirmation password is required'
-        ]));
-
-        $this->add($confirmPassword);
     }
 
     /**
@@ -60,47 +59,49 @@ class EditForm extends AddForm
      */
     public function addStatusElement()
     {
-        $role = new Select('status');
-        $role->setLabel('Status');
-        $role->setOptions([
-            self::STATUS_ACTIVE => 'active',
-            self::STATUS_SUSPENDED => 'suspended',
-            self::STATUS_BANNED => 'banned'
-        ]);
+        $status = (new Select('status'))
+            ->setOptions([
+                self::STATUS_ACTIVE => self::STATUS_ACTIVE_NAME,
+                self::STATUS_SUSPENDED => self::STATUS_SUSPENDED_NAME,
+                self::STATUS_BANNED => self::STATUS_BANNED_NAME
+            ])->setLabel('Status');
 
-        $this->add($role);
+        $this->add($status);
     }
 
     /**
-     * Checks if a status is 'active'
+     * Checks if a value of status form element(chooser) is 'active'.
+     * Actually, it is relevant when a request is POST and has a value of the status selector. Otherwise
+     * this function returns null.
      *
-     * @param integer $status
-     * @return bool
+     * @return boolean
      */
-    public function isActive($status)
+    public function isActive()
     {
-        return $status == self::STATUS_ACTIVE;
+        return (int) $this->getValue('status') === self::STATUS_ACTIVE;
     }
 
     /**
-     * Checks if a status is 'suspended'
+     * Checks if a value of status form element(chooser) is 'suspended'
+     * Actually, it is relevant when a request is POST and has a value of the status selector. Otherwise
+     * this function returns null.
      *
-     * @param integer $status
-     * @return bool
+     * @return boolean
      */
-    public function isSuspended($status)
+    public function isSuspended()
     {
-        return $status == self::STATUS_SUSPENDED;
+        return (int) $this->getValue('status') === self::STATUS_SUSPENDED;
     }
 
     /**
-     * Checks if a status is 'banned'
+     * Checks if a value of status form element(chooser) is 'banned'
+     * Actually, it is relevant when a request is POST and has a value of the status selector. Otherwise
+     * this function returns null.
      *
-     * @param integer $status
-     * @return bool
+     * @return boolean
      */
-    public function isBanned($status)
+    public function isBanned()
     {
-        return $status == self::STATUS_BANNED;
+        return (int) $this->getValue('status') === self::STATUS_BANNED;
     }
 }
