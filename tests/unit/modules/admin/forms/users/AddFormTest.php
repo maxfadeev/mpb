@@ -85,13 +85,5 @@ class AddFormTest extends \PHPUnit_Framework_TestCase
     public function testFormConfirmPasswordElement()
     {
         $this->assertArrayHasKey('confirmPassword', (array)$this->form->getElements());
-
-        $confirmPassword = $this->form->get('confirmPassword');
-
-        $this->assertEquals(1, count($confirmPassword->getValidators()));
-
-        $validator = $confirmPassword->getValidators()[0];
-        $this->assertInstanceOf('Phalcon\Validation\Validator\PresenceOf', $validator);
-        $this->assertEquals('The confirmation password is required', $validator->getOption('message'));
     }
 }

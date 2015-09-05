@@ -91,12 +91,7 @@ class AddForm extends Form
 
         $this->add($password);
 
-        $confirmPassword = new Password('confirmPassword');
-        $confirmPassword->addValidator(new PresenceOf([
-            'message' => 'The confirmation password is required'
-        ]));
-
-        $this->add($confirmPassword);
+        $this->add(new Password('confirmPassword'));
     }
 
     /**
