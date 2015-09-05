@@ -16,6 +16,10 @@ class EditForm extends AddForm
     const STATUS_SUSPENDED = 2;
     const STATUS_BANNED = 3;
 
+    const STATUS_ACTIVE_NAME = 'active';
+    const STATUS_SUSPENDED_NAME = 'suspended';
+    const STATUS_BANNED_NAME = 'banned';
+
     /**
      * Initializes form elements
      */
@@ -28,11 +32,14 @@ class EditForm extends AddForm
 
     /**
      * Adds changePassword and confirm-changePassword inputs
+     *
+     * @return void
      */
     public function addPasswordElement()
     {
         $password = (new Password('changePassword'))
             ->setLabel('Change password');
+
         $this->add($password);
 
         $this->add(new Password('confirmChangePassword'));
@@ -56,6 +63,8 @@ class EditForm extends AddForm
 
     /**
      * Adds a status drip-down select
+     *
+     * @return void
      */
     public function addStatusElement()
     {
@@ -65,6 +74,10 @@ class EditForm extends AddForm
                 self::STATUS_SUSPENDED => self::STATUS_SUSPENDED_NAME,
                 self::STATUS_BANNED => self::STATUS_BANNED_NAME
             ])->setLabel('Status');
+
+        $status->setDefault(
+            $this->getValue(self::STATUS_ACTIVE_NAME) ? self::STATUS_ACTIVE :
+                ($this->getValue(self::STATUS_SUSPENDED_NAME) ? self::STATUS_SUSPENDED : self::STATUS_BANNED));
 
         $this->add($status);
     }
