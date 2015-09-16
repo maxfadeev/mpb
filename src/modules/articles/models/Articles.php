@@ -16,7 +16,7 @@ class Articles extends Model
     /**
      * @var integer
      */
-    public $uid;
+    public $author_id;
 
     /**
      * @var string

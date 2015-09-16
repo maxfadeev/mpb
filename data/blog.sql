@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `articles`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `text` text NOT NULL,
   `created_at` datetime NOT NULL,
