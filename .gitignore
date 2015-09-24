@@ -1,5 +1,8 @@
-.idea*
+.idea
 src/cache
 vendor
 src/logs
 data/sqlite_dump.sql
+.project
+.buildpath
+.settings
