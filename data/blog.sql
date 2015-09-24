@@ -32,8 +32,8 @@ CREATE TABLE `articles` (
   `page_views` longtext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`id`),
-  KEY `uid` (`uid`),
-  CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`id`)
+  KEY `author_id` (`author_id`),
+  CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
