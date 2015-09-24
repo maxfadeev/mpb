@@ -6,3 +6,4 @@ data/sqlite_dump.sql
 .project
 .buildpath
 .settings
+.vagrant
