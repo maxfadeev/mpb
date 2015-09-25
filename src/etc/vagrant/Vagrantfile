@@ -2,18 +2,15 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-
   config.vm.define "web-bl-app" do |webblapp|
-
     config.vm.box = "puppetlabs/centos-7.0-64-puppet"
-    config.vm.box_url = "https://atlas.hashicorp.com/puppetlabs/boxes/centos-7.0-64-puppet"
     config.vm.hostname = "web-bl-app"
+
+    config.vm.synced_folder "../../../", "/var/www/mpb"
 
     config.vm.network "forwarded_port", guest: 80, host: 8080
     config.vm.network "private_network", ip: "192.168.33.10"
 
     config.vm.provision "shell", :path => "provision.sh"
-
   end
-
 end
