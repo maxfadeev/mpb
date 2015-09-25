@@ -19,8 +19,8 @@ yum install -y mysql-server
 
 yum install -y nginx
 
-touch /etc/nginx/conf.d/blog.conf
-cat >> /etc/nginx/conf.d/blog.conf <<'EOF'
+touch /etc/nginx/conf.d/mpb.conf
+cat >> /etc/nginx/conf.d/mpb.conf <<'EOF'
 server {
 
     listen   80;
@@ -29,9 +29,9 @@ server {
     charset utf-8;
 
     index index.php index.html index.htm;
-    set $root_path '/home/vagrant/blog/public';
-    error_log /var/log/nginx/blog.error.log;
-    access_log /var/log/nginx/blog.access.log;
+    set $root_path '/var/www/mpb/public';
+    error_log /var/log/nginx/mpb.error.log;
+    access_log /var/log/nginx/mpb.access.log;
     root $root_path;
 
     try_files $uri $uri/ @rewrite;
@@ -81,9 +81,9 @@ pm.max_children = 50
 
 pm.start_servers = 5
 
-pm.min_spare_servers = 2
+pm.min_spare_servers = 5
 
-pm.max_spare_servers = 4
+pm.max_spare_servers = 35
 
 pm.max_requests = 1000
 
