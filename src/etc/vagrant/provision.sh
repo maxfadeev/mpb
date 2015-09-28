@@ -5,10 +5,13 @@ date > vagrant_provisioned_at
 
 sudo -i
 
-apt-get update
-
 add-apt-repository ppa:ondrej/php5-5.6
-apt-get install php5 php5-fpm php5-mysql -y
+apt-get update
+apt-get install php5 php5-cli php5-fpm php5-mysql -y
+
+apt-add-repository ppa:phalcon/stable
+apt-get update
+apt-get install php5-phalcon
 
 apt-get remove apache2 -y
 apt-get install nginx -y
