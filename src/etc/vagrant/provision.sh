@@ -23,8 +23,8 @@ touch /etc/nginx/conf.d/mpb.conf
 cat >> /etc/nginx/conf.d/mpb.conf <<'EOF'
 server {
 
-    listen   80;
-    server_name blog.local;
+    listen   6000;
+    server_name localhost;
 
     charset utf-8;
 
