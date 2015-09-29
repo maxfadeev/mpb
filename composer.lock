@@ -4,121 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3f6d2a252009749205c3a658ca561d80",
+    "hash": "30190e3c6e34e84e15c61b4cc6d699d9",
+    "content-hash": "a9b8e30138a05a1a8570326f6b879cf4",
     "packages": [
         {
-            "name": "bower-asset/jquery",
-            "version": "dev-master",
+            "name": "duncan3dc/fork-helper",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery.git",
-                "reference": "b04124222395a05c80d4f1c3a70333fdb07bfe3d"
+                "url": "https://github.com/duncan3dc/fork-helper.git",
+                "reference": "afb22fb541fdd1d82babccc6a3c1bc5cd1ec6f20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery/zipball/b04124222395a05c80d4f1c3a70333fdb07bfe3d",
-                "reference": "b04124222395a05c80d4f1c3a70333fdb07bfe3d",
-                "shasum": ""
-            },
-            "type": "bower-asset-library",
-            "time": "2015-06-16 17:28:51"
-        },
-        {
-            "name": "bower-asset/wysiwygjs",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Artatol/wysiwyg.js.git",
-                "reference": "495aa8229a0d0a7ffc6bfe188fe5149682f499f0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Artatol/wysiwyg.js/zipball/495aa8229a0d0a7ffc6bfe188fe5149682f499f0",
-                "reference": "495aa8229a0d0a7ffc6bfe188fe5149682f499f0",
+                "url": "https://api.github.com/repos/duncan3dc/fork-helper/zipball/afb22fb541fdd1d82babccc6a3c1bc5cd1ec6f20",
+                "reference": "afb22fb541fdd1d82babccc6a3c1bc5cd1ec6f20",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/jquery": ">=1.11.0"
+                "ext-pcntl": "*",
+                "ext-shmop": "*",
+                "php": ">=5.4.0"
             },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "dist/wysiwyg-editor.NPM.min.js",
-                    "dist/wysiwyg-editor.css"
-                ],
-                "branch-alias": {
-                    "dev-master": "1.0.0-dev"
-                }
-            },
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "wysiwyg contenteditable editor (lightweight + cross browser)",
-            "keywords": [
-                "contenteditable",
-                "editor",
-                "javascript",
-                "rich editor",
-                "rich text editor",
-                "wysiwyg"
-            ],
-            "time": "2015-04-29 09:53:17"
-        },
-        {
-            "name": "fxp/composer-asset-plugin",
-            "version": "v1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
-                "reference": "c37a7ef0e253633ae0bdf29643129add73dfae71"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/francoispluchino/composer-asset-plugin/zipball/c37a7ef0e253633ae0bdf29643129add73dfae71",
-                "reference": "c37a7ef0e253633ae0bdf29643129add73dfae71",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "1.0.0",
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "composer/composer": "~1.0@dev"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Fxp\\Composer\\AssetPlugin\\FxpAssetPlugin",
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
+            "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Fxp\\Composer\\AssetPlugin\\": ""
+                    "duncan3dc\\Helpers\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "Apache-2.0"
             ],
             "authors": [
                 {
-                    "name": "François Pluchino",
-                    "email": "francois.pluchino@gmail.com"
+                    "name": "Craig Duncan",
+                    "email": "git@duncanc.co.uk",
+                    "homepage": "https://github.com/duncan3dc",
+                    "role": "Developer"
                 }
             ],
-            "description": "NPM/Bower Dependency Manager for Composer",
-            "homepage": "https://github.com/francoispluchino/composer-asset-plugin",
+            "description": "Simple class to fork processes in PHP and allow multi-threading",
+            "homepage": "https://github.com/duncan3dc/fork-helper",
             "keywords": [
-                "asset",
-                "bower",
-                "composer",
-                "dependency manager",
-                "nodejs",
-                "npm",
-                "package"
+                "control",
+                "fork",
+                "multi-threading",
+                "pcntl",
+                "process"
             ],
-            "time": "2015-06-04 10:37:32"
+            "time": "2015-06-28 21:54:15"
         },
         {
             "name": "phalcon/incubator",
@@ -126,35 +61,36 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalcon/incubator.git",
-                "reference": "8e8c3830b73a84ba28a8b551f687f0975869e312"
+                "reference": "5c2e758f4f3b41a99d9cd6f2dac4c239ff1a9522"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalcon/incubator/zipball/8e8c3830b73a84ba28a8b551f687f0975869e312",
-                "reference": "8e8c3830b73a84ba28a8b551f687f0975869e312",
+                "url": "https://api.github.com/repos/phalcon/incubator/zipball/5c2e758f4f3b41a99d9cd6f2dac4c239ff1a9522",
+                "reference": "5c2e758f4f3b41a99d9cd6f2dac4c239ff1a9522",
                 "shasum": ""
             },
             "require": {
-                "ext-phalcon": "~2.0",
-                "php": ">=5.3.21",
-                "swiftmailer/swiftmailer": ">=5.2"
+                "duncan3dc/fork-helper": "@stable",
+                "ext-phalcon": ">=2.0.4",
+                "php": ">=5.4",
+                "swiftmailer/swiftmailer": "~5.2"
             },
             "require-dev": {
-                "codeception/codeception": "*",
+                "codeception/codeception": "2.0.14",
                 "mockery/mockery": "*",
-                "php-mock/php-mock": "<0.6",
+                "php-mock/php-mock": "*",
                 "phpunit/phpunit": "4.6.*",
                 "squizlabs/php_codesniffer": "2.*"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Phalcon": "Library/"
+                "psr-4": {
+                    "Phalcon\\": "Library/Phalcon/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -169,7 +105,7 @@
                 "incubator",
                 "phalcon"
             ],
-            "time": "2015-06-10 13:47:44"
+            "time": "2015-09-25 22:29:27"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -229,9 +165,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "phalcon/incubator": 20,
-        "bower-asset/wysiwygjs": 20,
-        "bower-asset/jquery": 20
+        "phalcon/incubator": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
