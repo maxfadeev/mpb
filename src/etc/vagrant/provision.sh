@@ -84,6 +84,8 @@ service php5-fpm restart
 
 mysql -uroot -e 'create database blog charset=utf8 collate=utf8_unicode_ci;' && mysql -uroot blog < "/var/www/mpb/data/blog.sql"
 
+mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'blog'@'localhost'"
+
 cd /var/www/mpb
 curl -sS https://getcomposer.org/installer | php
 php composer.phar update
