@@ -7,3 +7,4 @@ data/sqlite_dump.sql
 .buildpath
 .settings
 .vagrant
+composer.phar
