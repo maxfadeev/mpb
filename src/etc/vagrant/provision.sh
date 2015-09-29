@@ -10,7 +10,7 @@ apt-get update
 apt-get install php5 php5-cli php5-dev php5-fpm php5-mysql -y
 
 apt-get install git -y
-git clone -b 2.1.x --depth=1 git://github.com/phalcon/cphalcon.git
+git clone -b 2.0.x --depth=1 git://github.com/phalcon/cphalcon.git
 cd cphalcon/ext; ./install
 echo 'extension=phalcon.so' >> /etc/php5/fpm/conf.d/phalcon.ini
 echo 'extension=phalcon.so' >> /etc/php5/cli/conf.d/phalcon.ini
@@ -27,6 +27,7 @@ sudo touch /etc/nginx/sites-available/default
 sudo cat >> /etc/nginx/sites-available/default <<'EOF'
 server {
     listen 8080;
+    listen 80;
     server_name localhost;
     charset utf-8;
     index index.php index.html index.htm;
