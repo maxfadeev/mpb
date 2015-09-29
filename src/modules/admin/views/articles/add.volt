@@ -8,8 +8,7 @@
 
 {% block title %}Admin{% endblock %}
 
-{% block content %}
-    {{ content() }}
+{% block container %}
     <form method="post">
         {# login #}
         {{ form.messages('title') }}

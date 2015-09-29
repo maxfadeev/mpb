@@ -2,11 +2,7 @@
 
 {% block title %}Admin{% endblock %}
 
-{% block navigation %}
-{% endblock %}
-
-{% block content %}
-    {{ content() }}
+{% block container %}
     <div id="login-block">
         <form method="post">
             {{ form.render('login') }}

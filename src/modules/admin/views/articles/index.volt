@@ -2,8 +2,7 @@
 
 {% block title %}Admin{% endblock %}
 
-{% block content %}
-    {{ content() }}
+{% block container %}
     {% for article in articles %}
         <p>{{ article.title }}
             <a href="{{ url("/articles/delete/id") }}/{{ article.id }}/{{ token }}">delete</a>

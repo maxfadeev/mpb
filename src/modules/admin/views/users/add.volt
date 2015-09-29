@@ -1,8 +1,8 @@
 {% extends "layouts/layout.volt" %}
 
-{% block title %}Admin{% endblock %}
+{% block title %}Create a new user{% endblock %}
 
-{% block content %}
+{% block container %}
     {{ content() }}
     <form method="post">
         {# login #}

@@ -5,14 +5,17 @@
     <link href="/css/main.css" rel="stylesheet" />
 {% endblock %}
 
-{% block title %}Admin{% endblock %}
-
-{% block navigation %}
-    <a href="{{ url("/users") }}">Users</a>
-    <a href="{{ url("/articles") }}">Articles</a>
-    <a href="{{ url("") }}">Dashboard</a>
-{% endblock %}
-{% block content %}
+{% block container %}
+    <div id="header">
+        {% if auth.getIdentity() %}
+            <a href="{{ url("/logout") }}">Logout</a>
+        {% endif %}
+    </div>
+    <nav>
+        <a href="{{ url("/users") }}">Users</a>
+        <a href="{{ url("/articles") }}">Articles</a>
+        <a href="{{ url("") }}">Dashboard</a>
+    </nav>
 {% endblock %}
 
 {% block scripts %}
