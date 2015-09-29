@@ -7,11 +7,13 @@ sudo -i
 
 add-apt-repository ppa:ondrej/php5-5.6
 apt-get update
-apt-get install php5 php5-cli php5-fpm php5-mysql -y
+apt-get install php5 php5-cli php5-dev php5-fpm php5-mysql -y
 
-apt-add-repository ppa:phalcon/stable
-apt-get update
-apt-get install php5-phalcon
+apt-get install git -y
+git clone -b 2.1.x --depth=1 git://github.com/phalcon/cphalcon.git
+cd cphalcon/ext; ./install
+touch /etc/php5/mods-available/phalcon.ini
+echo 'extension=phalcon.so' >> /etc/php5/mods-available/phalcon.ini
 
 apt-get remove apache2 -y
 apt-get install nginx -y
@@ -61,8 +63,8 @@ cat >> /etc/php5/fpm/pool.d/www.conf <<'EOF'
 [www]
 listen = 127.0.0.1:9000
 listen.allowed_clients = 127.0.0.1
-user = nginx
-group = nginx
+user = www-data
+group = www-data
 pm = dynamic
 pm.max_children = 50
 pm.start_servers = 5
@@ -79,3 +81,9 @@ EOF
 
 service nginx restart
 service php5-fpm restart
+
+mysql -uroot -e 'create database blog charset=utf8 collate=utf8_unicode_ci;' && mysql -uroot blog < "/var/www/mpb/data/blog.sql"
+
+cd /var/www/mpb
+curl -sS https://getcomposer.org/installer | php
+php composer.phar update
