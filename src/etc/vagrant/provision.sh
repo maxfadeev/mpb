@@ -12,8 +12,8 @@ apt-get install php5 php5-cli php5-dev php5-fpm php5-mysql -y
 apt-get install git -y
 git clone -b 2.1.x --depth=1 git://github.com/phalcon/cphalcon.git
 cd cphalcon/ext; ./install
-touch /etc/php5/mods-available/phalcon.ini
-echo 'extension=phalcon.so' >> /etc/php5/mods-available/phalcon.ini
+echo 'extension=phalcon.so' >> /etc/php5/fpm/conf.d/phalcon.ini
+echo 'extension=phalcon.so' >> /etc/php5/cli/conf.d/phalcon.ini
 
 apt-get remove apache2 -y
 apt-get install nginx -y
