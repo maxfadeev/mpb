@@ -53,7 +53,7 @@ class Bootstrap
             $connection = new Mysql([
                 'host' => $config['host'],
                 'username' => $config['username'],
-                'password' => $config['password'],
+                'password' => '',
                 'dbname' => $config['name']
             ]);
 
@@ -62,8 +62,6 @@ class Bootstrap
             return $connection;
         });
     }
-
-
 
     /**
      * Sets a Router service
