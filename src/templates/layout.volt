@@ -7,6 +7,8 @@
     </head>
     <body>
         <div id="container">
+            {% block header %}
+            {% endblock %}
             {% block container %}
             {% endblock %}
         </div>

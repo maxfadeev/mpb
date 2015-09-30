@@ -5,7 +5,7 @@
     <link href="/css/main.css" rel="stylesheet" />
 {% endblock %}
 
-{% block container %}
+{% block header %}
     <div id="header">
         {% if auth.getIdentity() %}
             <a href="{{ url("/logout") }}">Logout</a>

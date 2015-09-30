@@ -2,6 +2,9 @@
 
 {% block title %}Admin{% endblock %}
 
+{% block header %}
+{% endblock %}
+
 {% block container %}
     <div id="login-block">
         <form method="post">
