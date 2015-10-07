@@ -132,7 +132,7 @@ class Bootstrap
      */
     public function getIniConfiguration($name)
     {
-        return new Ini(APP_DIR . "/configs/{$name}1.ini");
+        return new Ini(APP_DIR . "/configs/{$name}.ini");
     }
 
     /**
