@@ -32,9 +32,12 @@ class DiTest extends \PHPUnit_Framework_TestCase
     {
         $di = new Di();
 
+        $this->assertTrue($di->has('session'));
         $this->assertTrue($di->getService('session')->isShared());
 
         $session = $di->get('session');
+        //This does not work within a test
+        //$this->assertTrue($session->isStarted());
 
         $this->assertInstanceOf('Phalcon\Session\Adapter\Files', $session);
     }
@@ -43,6 +46,7 @@ class DiTest extends \PHPUnit_Framework_TestCase
     {
         $di = new Di();
 
+        $this->assertTrue($di->has('url'));
         $this->assertFalse($di->getService('url')->isShared());
 
         $url = $di->get('url');
