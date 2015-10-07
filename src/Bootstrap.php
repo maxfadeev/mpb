@@ -11,7 +11,7 @@ use Phalcon\Logger\Adapter\File as FileAdapter;
 use Phalcon\Mvc\Application;
 use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Url;
-use Phalcon\Session\Adapter\Files as SessionAdapter;
+use Phalcon\Config\Exception as ConfigException;
 
 class Bootstrap
 {
@@ -35,9 +35,9 @@ class Bootstrap
      */
     public function registerServices()
     {
+        $this->setLogger();
         $this->setDb($this->getIniConfiguration('application')->db);
         $this->setRoutes();
-        $this->setLogger();
     }
 
     /**
@@ -126,7 +126,11 @@ class Bootstrap
      */
     public function getIniConfiguration($name)
     {
-        return new Ini(APP_DIR . "/configs/{$name}.ini");
+        try {
+            return new Ini(APP_DIR . "/configs/{$name}.ini");
+        } catch(ConfigException $e) {
+            $this->di->get('logger')->error($e->getMessage());
+        }
     }
 
     /**
