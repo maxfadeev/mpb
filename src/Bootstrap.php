@@ -36,8 +36,14 @@ class Bootstrap
     public function registerServices()
     {
         $this->setLogger();
-        $this->setDb($this->getIniConfiguration('application')->db);
-        $this->setRoutes();
+        try {
+            $this->setDb($this->getIniConfiguration('application')->db);
+            $this->setRoutes();
+        }
+        catch(\Exception $e) {
+            $this->di->get('logger')->error($e->getMessage());
+            $this->di->get('logger')->error($e->getTraceAsString());
+        }
     }
 
     /**
@@ -126,11 +132,7 @@ class Bootstrap
      */
     public function getIniConfiguration($name)
     {
-        try {
-            return new Ini(APP_DIR . "/configs/{$name}.ini");
-        } catch(ConfigException $e) {
-            $this->di->get('logger')->error($e->getMessage());
-        }
+        return new Ini(APP_DIR . "/configs/{$name}1.ini");
     }
 
     /**
