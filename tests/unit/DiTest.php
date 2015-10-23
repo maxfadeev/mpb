@@ -8,34 +8,43 @@ use Application\Di;
 
 class DiTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $applicationDiMock;
+
+    /**
+     * @var \Application\Di
+     */
+    protected $di;
+
+    public function setUp() {
+        $this->applicationDiMock = $this->getMock('Application\Di');
+        $this->di = new Di();
+    }
+
     public function testCallsSetSessionWithConstructor()
     {
-        $mock = $this->getMock('Application\Di');
-
-        $mock->expects($this->once())
+        $this->applicationDiMock->expects($this->once())
             ->method('setSession');
 
-        $mock->__construct();
+        $this->applicationDiMock->__construct();
     }
 
     public function testCallsSetUrlWithConstructor()
     {
-        $mock = $this->getMock('Application\Di');
-
-        $mock->expects($this->once())
+        $this->applicationDiMock->expects($this->once())
             ->method('setUrl');
 
-        $mock->__construct();
+        $this->applicationDiMock->__construct();
     }
 
     public function testSetSession()
     {
-        $di = new Di();
+        $this->assertTrue($this->di->has('session'));
+        $this->assertTrue($this->di->getService('session')->isShared());
 
-        $this->assertTrue($di->has('session'));
-        $this->assertTrue($di->getService('session')->isShared());
-
-        $session = $di->get('session');
+        $session = $this->di->get('session');
         //This does not work within a test
         //$this->assertTrue($session->isStarted());
 
@@ -44,12 +53,10 @@ class DiTest extends \PHPUnit_Framework_TestCase
 
     public function testSetUrl()
     {
-        $di = new Di();
+        $this->assertTrue($this->di->has('url'));
+        $this->assertFalse($this->di->getService('url')->isShared());
 
-        $this->assertTrue($di->has('url'));
-        $this->assertFalse($di->getService('url')->isShared());
-
-        $url = $di->get('url');
+        $url = $this->di->get('url');
 
         $this->assertEquals('/', $url->getBaseUri());
     }
