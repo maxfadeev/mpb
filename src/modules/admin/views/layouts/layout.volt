@@ -1,8 +1,8 @@
 {% extends "../../../templates/layout.volt" %}
 
 {% block head %}
-    <link href="http://cdn.everything.io/kickstart/3.x/css/kickstart.min.css" rel="stylesheet" />
     <link href="/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/bower_components/trumbowyg/dist/ui/trumbowyg.min.css">
 {% endblock %}
 
 {% block header %}
@@ -19,5 +19,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src='http://cdn.everything.io/kickstart/3.x/js/kickstart.min.js'></script>
+    <script src='/bower_components/jquery/dist/jquery.min.js'></script>
+    <script src='/bower_components/trumbowyg/dist/trumbowyg.min.js'></script>
+    <script src='/js/main.js'></script>
 {% endblock %}

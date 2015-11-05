@@ -1,6 +1,6 @@
 {% extends "layouts/layout.volt" %}
 
-{% block title %}Admin{% endblock %}
+{% block title %}Edit article{% endblock %}
 
 {% block container %}
     <form method="post">
