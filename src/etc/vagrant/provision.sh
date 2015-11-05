@@ -48,8 +48,11 @@ server {
         fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
-    location ~* ^/(css|img|js|flv|swf|download)/(.+)$ {
+    location ~* ^/(img|flv|swf|download)/(.+)$ {
         root $root_path;
+    }
+    location ~* \.(css|js)$ {
+        sendfile off;
     }
     location ~ /\.ht {
         deny all;
