@@ -82,7 +82,8 @@ class UsersController extends Controller
             // every time the user needs to edit data.
             // Check whether a password field is empty and, if so, set default validators and change
             // a password value
-            if (empty($this->request->getPost('changePassword')) === false) {
+            if (!empty($this->request->getPost('changePassword'))
+                || !empty($this->request->getPost('confirmChangePassword'))) {
                 $form->setPasswordValidators();
                 $user->assign(['password' => $this->security->hash($this->request->getPost('changePassword'))]);
             }
