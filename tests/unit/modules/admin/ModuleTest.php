@@ -87,7 +87,8 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([
             'compiledPath' => APP_DIR . '/cache/volt/',
-            'compiledSeparator' => '_'
+            'compiledSeparator' => '_',
+            'compileAlways' => true
         ], $volt->getOptions());
     }
 

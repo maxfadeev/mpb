@@ -83,7 +83,8 @@ class Module implements ModuleDefinitionInterface
             $volt = new Volt($view, $this->di);
             $volt->setOptions([
                 'compiledPath' => APP_DIR . '/cache/volt/',
-                'compiledSeparator' => '_'
+                'compiledSeparator' => '_',
+                'compileAlways' => true
             ]);
 
             $view->registerEngines(['.volt' => $volt]);
