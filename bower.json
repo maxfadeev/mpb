@@ -1,0 +1,7 @@
+{
+  "name": "mpb",
+  "dependencies": {
+    "ember": "~2.1.0",
+    "trumbowyg": "~1.1.7"
+  }
+}
