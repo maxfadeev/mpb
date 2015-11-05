@@ -11,7 +11,7 @@ use Phalcon\Logger\Adapter\File as FileAdapter;
 use Phalcon\Mvc\Application;
 use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Url;
-use Phalcon\Config\Exception as ConfigException;
+use Phalcon\Mvc\Dispatcher;
 
 class Bootstrap
 {
@@ -39,8 +39,8 @@ class Bootstrap
         try {
             $this->setDb($this->getIniConfiguration('application')->db);
             $this->setRoutes();
-        }
-        catch(\Exception $e) {
+            $this->setDispatcher();
+        } catch(\Exception $e) {
             $this->di->get('logger')->error($e->getMessage());
             $this->di->get('logger')->error($e->getTraceAsString());
         }
@@ -92,6 +92,22 @@ class Bootstrap
             }
 
             return $router;
+        });
+    }
+
+    /**
+     * Sets a Dispatcher service
+     */
+    public function setDispatcher()
+    {
+        $this->di->setShared('dispatcher', function() {
+            $eventsManager = $this->di->get('eventsManager');
+            $eventsManager->attach("dispatch", new DispatcherListener());
+
+            $dispatcher = new Dispatcher();
+            $dispatcher->setEventsManager($eventsManager);
+
+            return $dispatcher;
         });
     }
 

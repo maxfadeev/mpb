@@ -7,6 +7,7 @@ namespace Application;
 use Phalcon\Events\Event;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\User\Component;
+use Phalcon\Mvc\Dispatcher\Exception as DispatcherException;
 
 /**
  * @property \Application\Modules\Users\Components\Auth auth
@@ -43,6 +44,14 @@ class DispatcherListener extends Component
 
                 return;
             }
+        }
+    }
+
+    public function beforeException(Event $event, Dispatcher $dispatcher, DispatcherException $exception)
+    {
+        if ($exception instanceof DispatcherException) {
+            $dispatcher->forward(['controller' => 'error', 'action' => 'notFound']);
+            return false;
         }
     }
 }

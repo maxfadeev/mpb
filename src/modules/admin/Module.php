@@ -58,17 +58,10 @@ class Module implements ModuleDefinitionInterface
      */
     public function setDispatcher()
     {
-        $this->di->set('dispatcher', function() {
-            $dispatcher = new Dispatcher();
-            $dispatcher->setDefaultNamespace('Application\Modules\Admin\Controllers');
+        $dispatcher = $this->di->get('dispatcher');
+        $dispatcher->setDefaultNamespace('Application\Modules\Admin\Controllers');
 
-            $eventsManager = $this->di->get('eventsManager');
-            $eventsManager->attach("dispatch", new DispatcherListener());
-
-            $dispatcher->setEventsManager($eventsManager);
-
-            return $dispatcher;
-        });
+        $this->di->set('dispatcher', $dispatcher);
     }
 
     /**
