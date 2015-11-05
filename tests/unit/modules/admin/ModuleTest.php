@@ -65,8 +65,6 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
 
         $dispatcher = $this->di->get('dispatcher');
         $this->assertEquals('Application\Modules\Admin\Controllers', $dispatcher->getDefaultNamespace());
-
-        $this->assertTrue($dispatcher->getEventsManager()->hasListeners('dispatch'));
     }
 
     /**
