@@ -82,6 +82,17 @@ php_value[session.save_handler] = files
 php_value[soap.wsdl_cache_dir]  = /var/lib/php/wsdlcache
 EOF
 
+pecl install xdebug
+
+sudo cat >> /etc/php5/fpm/php.ini <<'EOF'
+[xdebug]
+zend_extension="/usr/lib/php5/20131226/xdebug.so"
+xdebug.remote_port=9000
+xdebug.remote_enable=On
+xdebug.remote_connect_back=On
+xdebug.remote_log=/var/log/xdebug.log
+EOF
+
 service nginx restart
 service php5-fpm restart
 
