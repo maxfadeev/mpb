@@ -19,4 +19,5 @@
 
         {{ form.render('submit') }}
     </form>
+    <a href="{{ url("/articles") }}">Cancel</a>
 {% endblock %}
