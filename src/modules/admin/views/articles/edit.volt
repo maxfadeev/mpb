@@ -10,7 +10,6 @@
         {{ form.render('title') }}
         {# email #}
         {{ form.messages('text') }}
-        {{ form.label('text') }}
         {{ form.render('text') }}
 
         {# CSRF security token #}
