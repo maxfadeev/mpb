@@ -5,6 +5,7 @@ body, button, input, select, textarea {
 
 a {
     font-family: "Trebuchet MS",Helvetica,Verdana,sans-serif;
+    text-decoration: none;
 }
 
 #login-block {
@@ -18,6 +19,29 @@ a {
 }
 
 #login, #password {
-    width: 206px;
+    width: 202px;
     margin-bottom: 3px;
+}
+
+.btn {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border: none;
+    border-radius: 1px;
+}
+
+.btn:hover {
+    cursor: pointer;
+    border-bottom: 4px solid #08c;
+    padding-bottom: 4px;
+}
+
+#login-block {
+    border-left: 1px solid #eee;
+}
+
+#login-block #login, #login-block #password {
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
 }
