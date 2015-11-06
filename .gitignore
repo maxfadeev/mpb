@@ -8,4 +8,5 @@ data/sqlite_dump.sql
 .settings
 .vagrant
 composer.phar
+composer.lock
 public/bower_components
