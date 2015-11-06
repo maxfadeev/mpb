@@ -33,7 +33,7 @@ a {
 .btn:hover {
     cursor: pointer;
     border-bottom: 4px solid #08c;
-    padding-bottom: 4px;
+    padding-bottom: 6px;
 }
 
 #login-block {
