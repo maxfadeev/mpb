@@ -12,16 +12,45 @@ use Phalcon\Security;
 
 class UsersControllerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testIndexAction()
+    protected $userController;
+
+    public function setUp()
     {
-        $controller = new UsersController();
-        $controller->view = new View();
-        $controller->indexAction();
+        $this->userController = new UsersController();
 
-        $paramsToView = $controller->view->getParamsToView();
-        $this->assertArrayHasKey('users', $paramsToView);
+        $viewMock = $this->getMock('Phalcon\Mvc\View');
+        $viewMock->method('setVar');
+        $viewMock->method('setVars');
 
-        $this->assertArrayHasKey('token', $paramsToView);
-        $this->assertTrue($controller->security->checkToken($paramsToView['token']));
+        $requestMock = $this->getMock('Phalcon\Http\Request');
+
+        $securityMock = $this->getMock('Phalcon\Security');
+
+        $this->userController->view = $viewMock;
+        $this->userController->request = $requestMock;
+        $this->userController->security = $securityMock;
+    }
+
+    public function testAddActionEmptyPost()
+    {
+        $request = $this->userController->request;
+        $request->method('isPost')->will($this->returnValue(true));
+        $request->method('getPost')->will($this->returnValue([]));
+        $this->userController->security->method('checkToken')->will($this->returnValue(true));
+
+        $this->userController->addAction();
+    }
+
+    public function testAddActionInvalidPost()
+    {
+        $request = $this->userController->request;
+        $request->method('isPost')->will($this->returnValue(true));
+        $postValue = [
+            'login' => '2'
+        ];
+        $request->method('getPost')->will($this->returnValue($postValue));
+        $this->userController->security->method('checkToken')->will($this->returnValue(true));
+
+        $this->userController->addAction();
     }
 }
