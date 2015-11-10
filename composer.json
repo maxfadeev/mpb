@@ -1,4 +1,5 @@
 {
   "require-dev": {
+    "instaclick/php-code-sniffer": "1.4.*"
   }
 }
